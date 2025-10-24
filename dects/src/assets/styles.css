@@ -1,0 +1,79 @@
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 0;
+}
+.navbar {
+    background-color: #2c3e50;
+    color: white;
+    padding: 15px;
+
+}
+.sidebar{
+    width: 220px;
+    background-color: #34495e;
+    color: white;
+    text-decoration: none;
+    padding: 12px;
+    margin: 5px 0;
+}
+.sidebar a{
+    display: block;
+    color: white;
+    text-decoration: none;
+    padding: 12px;
+    margin: 5px 0;
+}
+.sidebar a:hover{
+    background-color: #1abc9c;
+
+}
+.main-content {
+    margin-left: 240px;
+    padding: 20px;
+}
+
+.token-card{
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0,0, 0.2);
+    margin-bottom: 20px;
+    width: 250px;
+    text-align: center;
+}
+.token-card h4{
+    margin: 0 0 10px 0;
+    color: #2c3e50;
+
+}
+.token-card p{
+    font-size: 20px;
+    font-weight: bold;
+}
+.buy-tokens{
+    background-color: #ecf0f1;
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 20px;
+    width: 300px;
+}
+.buy-tokens input{
+    padding: 8px;
+    width: calc(100% -20px);
+    margin-bottom: 10px;
+    border-radius: 4px;
+    border: 1px solid #bdc3c7 ;
+}
+.buy-tokens button{
+    padding: 10px 15px;
+    background-color: #1abc9c;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.buy-tokens button:hover{
+    background-color: #16a085;
+}
