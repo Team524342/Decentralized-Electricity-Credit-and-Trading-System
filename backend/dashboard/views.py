@@ -1,0 +1,19 @@
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+
+
+TOKEN_BALANCES={
+    "customer_1":100
+}
+
+@api_view(['GET'])
+def get_token_balance(request,consumer_id):
+    balance=TOKEN_BALANCES.get(consumer_id,0)
+    return Response({"token_balance":balance})
+@api_view(['POST'])
+def buy_tokens(request,consumer_id):
+    amount=int(request.data.get('amount',0))
+    if amount<=0:
+        return Response({'error ':"Invalid Amount"},status=400)
+    TOKEN_BALANCES[consumer_id]=TOKEN_BALANCES.get(consumer_id,0)+amount
+    return Response({"token_balance":TOKEN_BALANCES[consumer_id]})
