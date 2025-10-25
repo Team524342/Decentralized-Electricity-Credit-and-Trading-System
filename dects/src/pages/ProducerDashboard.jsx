@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import '../assets/styles.css';
+import '../assets/producer.css';
 
 function ProducerDashboard() {
   const [generatedEnergy, setGeneratedEnergy] = useState(50); // Example: 50 kWh
