@@ -13,7 +13,6 @@ function App() {
         <Route path="/" element={<Navigate to="/consumer" replace />} />
         <Route path="/consumer" element={<ConsumerDashboard />} />
         <Route path="/producer" element={<ProducerDashboard />} />
-        <Route path="/adminb" element={<AdminDashboard />} />
         <Route path="/admin" element={<AdminPanal />} />
       </Routes>
     </Router>
