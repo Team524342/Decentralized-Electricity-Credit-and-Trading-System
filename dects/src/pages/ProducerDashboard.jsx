@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import '../assets/producer.css';
 
 function ProducerDashboard() {
-  const [generatedEnergy, setGeneratedEnergy] = useState(50); // Example: 50 kWh
+  // const [generatedEnergy, setGeneratedEnergy] = useState(50); // Example: 50 kWh
   const [tokenBalance, setTokenBalance] = useState(50); // Example: 50 ETK
-  const [pricePerETK, setPricePerETK] = useState(12); // ₹12 per ETK
+  // const [pricePerETK, setPricePerETK] = useState(12); // ₹12 per ETK
   const [earnings, setEarnings] = useState(0);
 
   const mintTokens = () => {
