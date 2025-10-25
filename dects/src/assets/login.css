@@ -1,6 +1,90 @@
-body {
-    font-family: Arial, Helvetica, sans-serif;
-    background-color: #f4f4f9;
-    margin: 0;
-    padding: 0;
+.login-container {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(to right, #1e3a5f, #305a8f);
+  font-family: "Poppins", sans-serif;
+  color: #1e3a5f;
+}
+
+.login-card {
+  background: white;
+  width: 380px;
+  padding: 40px 30px;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+.login-card h1 {
+  color: #1e3a5f;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.login-card h2 {
+  color: #305a8f;
+  margin-bottom: 25px;
+  font-size: 22px;
+}
+
+.input-group {
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+.input-group label {
+  display: block;
+  font-size: 14px;
+  margin-bottom: 6px;
+  color: #1e3a5f;
+}
+
+.input-group input,
+.input-group select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  outline: none;
+  transition: 0.3s;
+}
+
+.input-group input:focus,
+.input-group select:focus {
+  border-color: #1e3a5f;
+}
+
+.btn {
+  width: 100%;
+  padding: 12px;
+  background-color: #1e3a5f;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  background-color: #2e4a77;
+}
+
+.register-link {
+  margin-top: 20px;
+  font-size: 14px;
+  color: #555;
+}
+
+.register-link a {
+  color: #1e3a5f;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.register-link a:hover {
+  text-decoration: underline;
 }
