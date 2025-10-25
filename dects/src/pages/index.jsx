@@ -18,7 +18,7 @@ function IndexPage() {
       {/* Hero Section */}
       <section className="hero">
         <h1>Real-Time Decentralized Electricity Credit and Trading System</h1>
-        <p>
+        <p className="tagline">
           Empowering Producers, Consumers, and Government through Blockchain, 
           Smart Contracts, and AI-driven Dynamic Pricing.
         </p>
@@ -55,19 +55,6 @@ function IndexPage() {
             </p>
           </div>
         </div>
-      </section>
-
-      {/* Technology Stack */}
-      <section className="tech">
-        <h2>🧠 Technology Stack</h2>
-        <ul>
-          <li><b>Frontend:</b> React.js, HTML, CSS</li>
-          <li><b>Backend:</b> Django / Flask</li>
-          <li><b>Blockchain:</b> Ethereum (Sepolia Testnet)</li>
-          <li><b>Database:</b> MySQL / SQLite</li>
-          <li><b>AI/ML:</b> Python (Dynamic Pricing & Prediction)</li>
-          <li><b>Integration:</b> REST APIs, Smart Contracts (Solidity)</li>
-        </ul>
       </section>
 
       {/* Quick Access Section */}
