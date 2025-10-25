@@ -1,146 +1,130 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import { Line } from "react-chartjs-2";
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend,
+} from "chart.js";
 import "../assets/producer.css";
 
+ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
+
 function ProducerDashboard() {
-  const [producerData, setProducerData] = useState(null);
-  const [generatedEnergy, setGeneratedEnergy] = useState(0);
-  const [pricePerETK, setPricePerETK] = useState(12); // ₹12 per ETK
-  const [loading, setLoading] = useState(true);
+  const [energyGenerated, setEnergyGenerated] = useState(150);
+  const [tokenBalance, setTokenBalance] = useState(120);
+  const [earnings, setEarnings] = useState(4560);
+  const [pricePerETK, setPricePerETK] = useState(12);
 
-  // 🔹 Load producer data on page load
-  useEffect(() => {
-    fetch("http://localhost:5000/producer/data/1")
-      .then((res) => res.json())
-      .then((data) => {
-        setProducerData(data);
-        setGeneratedEnergy(data.energy_generated);
-        setLoading(false);
-      })
-      .catch((err) => console.error("Error fetching producer data:", err));
-  }, []);
-
-  // 🔹 Mint Tokens API
-  const mintTokens = async () => {
-    try {
-      const response = await fetch("http://localhost:5000/producer/mint", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ id: 1, energy: generatedEnergy }),
-      });
-
-      const data = await response.json();
-      alert(data.message);
-      // Refresh data after mint
-      window.location.reload();
-    } catch (error) {
-      console.error("Mint error:", error);
-    }
+  // chart data
+  const data = {
+    labels: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+    datasets: [
+      {
+        label: "Energy Generated (kWh)",
+        data: [40, 45, 60, 55, 70, 65],
+        borderColor: "#4F46E5",
+        backgroundColor: "rgba(79, 70, 229, 0.1)",
+        fill: true,
+        tension: 0.4,
+      },
+      {
+        label: "ETK Sold",
+        data: [10, 15, 30, 25, 45, 40],
+        borderColor: "#06B6D4",
+        backgroundColor: "rgba(6, 182, 212, 0.1)",
+        fill: true,
+        tension: 0.4,
+      },
+    ],
   };
 
-  // 🔹 Sell Tokens API
-  const sellTokens = async () => {
+  const mintTokens = () => {
+    alert(`${energyGenerated} ETK minted successfully!`);
+    setTokenBalance(tokenBalance + energyGenerated);
+  };
+
+  const sellTokens = () => {
     const amount = prompt("Enter ETK amount to sell:");
-    if (!amount) return;
-
-    try {
-      const response = await fetch("http://localhost:5000/producer/sell", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ id: 1, amount: parseFloat(amount), price: pricePerETK }),
-      });
-
-      const data = await response.json();
-
-      if (response.ok) {
-        alert(`${data.message}\nEarnings: ₹${data.earnings.toFixed(2)}\nCommission: ₹${data.commission.toFixed(2)}`);
-        window.location.reload();
-      } else {
-        alert(`Error: ${data.error}`);
-      }
-    } catch (error) {
-      console.error("Sell error:", error);
+    if (amount && amount <= tokenBalance) {
+      const total = amount * pricePerETK;
+      const commission = (2 / 100) * total;
+      const net = total - commission;
+      setTokenBalance(tokenBalance - amount);
+      setEarnings(earnings + net);
+      alert(`Sold ${amount} ETK for ₹${net} (after 2% commission).`);
+    } else {
+      alert("Invalid amount or insufficient balance.");
     }
   };
-
-  // 🔹 Burn Tokens API
-  const burnTokens = async () => {
-    const amount = prompt("Enter ETK amount to burn:");
-    if (!amount) return;
-
-    try {
-      const response = await fetch("http://localhost:5000/producer/burn", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ id: 1, amount: parseFloat(amount) }),
-      });
-
-      const data = await response.json();
-      alert(data.message);
-      window.location.reload();
-    } catch (error) {
-      console.error("Burn error:", error);
-    }
-  };
-
-  if (loading) return <h2 style={{ textAlign: "center" }}>Loading Producer Data...</h2>;
 
   return (
-    <div className="producer-container">
+    <div className="producer-dashboard">
       {/* Sidebar */}
-      <div className="sidebar">
-        <h2>Producer Dashboard</h2>
+      <aside className="sidebar">
+        <h2>⚡ ECMS</h2>
         <ul>
-          <li>Dashboard</li>
+          <li className="active">Dashboard</li>
+          <li>Transactions</li>
           <li>Mint Tokens</li>
           <li>Sell Tokens</li>
-          <li>Burn Tokens</li>
-          <li>Transactions</li>
+          <li>Reports</li>
+          <li>Profile</li>
         </ul>
-      </div>
+      </aside>
 
-      {/* Main Content */}
-      <div className="main-content">
-        <h3>Welcome, {producerData.name} ☀️</h3>
-        <p>Wallet: {producerData.wallet}</p>
-        <p>
-          Manage your energy production, mint tokens, sell them, and track your
-          earnings.
-        </p>
-
-        {/* Stats Section */}
-        <div className="stats">
-          <div className="card">
-            <h4>Generated Energy</h4>
-            <p>{producerData.energy_generated} kWh</p>
+      {/* Main content */}
+      <main className="main-content">
+        <header className="topbar">
+          <h2>Producer Dashboard</h2>
+          <div className="user-info">
+            <img src="https://i.pravatar.cc/40" alt="profile" />
+            <span>Producer A</span>
           </div>
-          <div className="card">
+        </header>
+
+        {/* Statistic cards */}
+        <section className="stats-cards">
+          <div className="card blue">
+            <h4>Energy Generated</h4>
+            <p>{energyGenerated} kWh</p>
+          </div>
+          <div className="card teal">
             <h4>Token Balance</h4>
-            <p>{producerData.token_balance} ETK</p>
+            <p>{tokenBalance} ETK</p>
           </div>
-          <div className="card">
-            <h4>Current Price</h4>
-            <p>₹{pricePerETK} / ETK</p>
+          <div className="card yellow">
+            <h4>Earnings</h4>
+            <p>₹{earnings}</p>
           </div>
-          <div className="card">
-            <h4>Total Earnings</h4>
-            <p>₹{producerData.earnings.toFixed(2)}</p>
+          <div className="card purple">
+            <h4>Price per ETK</h4>
+            <p>₹{pricePerETK}</p>
           </div>
-        </div>
+        </section>
 
-        {/* Action Buttons */}
-        <div className="actions">
-          <button onClick={mintTokens}>Mint Tokens</button>
-          <button onClick={sellTokens}>Sell Tokens</button>
-          <button onClick={burnTokens}>Burn Tokens</button>
-        </div>
+        {/* Chart section */}
+        <section className="chart-section">
+          <div className="chart-card">
+            <h3>Energy vs Token Trends</h3>
+            <Line data={data} />
+          </div>
 
-        {/* Transaction Info */}
-        <div className="note">
-          <p>
-            💡 Each kWh = 1 ETK. 2% platform commission applies on each trade.
-          </p>
-        </div>
-      </div>
+          <div className="trade-actions">
+            <h3>Quick Actions</h3>
+            <button className="mint-btn" onClick={mintTokens}>
+              ⚙️ Mint Tokens
+            </button>
+            <button className="sell-btn" onClick={sellTokens}>
+              💸 Sell Tokens
+            </button>
+          </div>
+        </section>
+      </main>
     </div>
   );
 }
