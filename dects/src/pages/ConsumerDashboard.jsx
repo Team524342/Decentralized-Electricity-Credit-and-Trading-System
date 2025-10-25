@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import Navbar from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
 import TokenCard from "../components/TokenCard";
+import { Link } from "react-router-dom";
 
 
 const ConsumerDashboard = () =>{
@@ -26,6 +27,7 @@ const ConsumerDashboard = () =>{
                 <p>
                     Here you can view your token blance,buy tokens,and track your Energy usage.
                 </p>
+                <Link to="/admin">Go to AdminPanal</Link>
                 {/* Token Balance */}
                 <TokenCard title={"Your Token Balance"} value={`${tokenBalance} ET`} />
                 {/* Buy Token  Section  */}
