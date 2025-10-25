@@ -1,6 +1,180 @@
-body {
-    font-family: Arial, Helvetica, sans-serif;
-    background-color: #f4f4f9;
-    margin: 0;
-    padding: 0;
+.index-container {
+  font-family: "Poppins", sans-serif;
+  color: #1e3a5f;
+  background-color: #f5f7fa;
+}
+
+/* Navbar */
+.navbar {
+  background-color: #1e3a5f;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 40px;
+}
+
+.logo {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 25px;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+.nav-links a:hover {
+  color: #f8d210;
+}
+
+/* Hero Section */
+.hero {
+  text-align: center;
+  background: linear-gradient(to right, #1e3a5f, #305a8f);
+  color: white;
+  padding: 100px 40px;
+}
+
+.hero h1 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.hero p {
+  max-width: 700px;
+  margin: 0 auto 30px auto;
+  line-height: 1.6;
+}
+
+.btn-group .btn {
+  margin: 10px;
+  padding: 12px 25px;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.primary {
+  background-color: #f8d210;
+  color: #1e3a5f;
+}
+
+.secondary {
+  background-color: white;
+  color: #1e3a5f;
+}
+
+.tertiary {
+  background-color: transparent;
+  border: 2px solid white;
+  color: white;
+}
+
+.btn:hover {
+  opacity: 0.8;
+}
+
+/* Overview Section */
+.overview {
+  padding: 60px 40px;
+  text-align: center;
+}
+
+.overview-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+  margin-top: 30px;
+}
+
+.card {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Tech Stack */
+.tech {
+  background-color: #e9eef5;
+  padding: 60px 40px;
+  text-align: center;
+}
+
+.tech ul {
+  list-style: none;
+  padding: 0;
+  line-height: 2;
+}
+
+/* Quick Access Section */
+.quick-access {
+  padding: 60px 40px;
+  text-align: center;
+}
+
+.access-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 25px;
+  margin-top: 20px;
+}
+
+.access-card {
+  background: #1e3a5f;
+  color: white;
+  padding: 20px;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+.access-card:hover {
+  background: #2e4a77;
+}
+
+/* Team Section */
+.team {
+  padding: 60px 40px;
+  background-color: #f5f7fa;
+  text-align: center;
+}
+
+.team-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.team-card {
+  background: white;
+  padding: 20px 30px;
+  border-radius: 12px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.guide {
+  margin-top: 30px;
+  font-style: italic;
+}
+
+/* Footer */
+.footer {
+  background-color: #162a46;
+  color: white;
+  text-align: center;
+  padding: 20px;
+  font-size: 14px;
 }
