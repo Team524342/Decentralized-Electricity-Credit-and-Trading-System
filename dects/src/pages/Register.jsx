@@ -38,45 +38,45 @@ function Register(){
     return(
 
     
-    
-     <div className="container" >
-        <h2> User Registration Form</h2>
-        <form className="form" onSubmit={handleSubmit}>
+     <div className='register-page'>
+     <div className="register-card" >
+        <h2 className='register-title'> User Registration Form</h2>
+        <form className="register-form" onSubmit={handleSubmit}>
       
             <label className='block text-sm font-medium text-gray-700'>Full Name</label>   
-            <input type="text" name="name" placeholder="Full Name" 
+            <input type="text" name="name" placeholder="Full Name" className='input-field'
             value={formData.name} onChange={handleChange}required/>
         
           
             <label >Email Address</label>
-            <input type="email" name="email" placeholder="Email" 
+            <input type="email" name="email" placeholder="Email" className='input-field'
             value={formData.email} onChange={handleChange}required />
          
             <label>Password</label>
-            <input type="password" name="password" placeholder="Password" 
+            <input type="password" name="password" placeholder="Password" className='input-field'
             value={formData.password} onChange={handleChange}required />
            
            <label>Role</label>
-           <select name='Role' value={formData.role} onChange={handleChange}>
+           <select name='Role' value={formData.role} onChange={handleChange} className='input-field'>
             <option value="consumer">Consumer</option>
             <option value="producer">Producer</option>
            </select>
           
            
             <label>Wallet Address</label>
-            <input type="text" name="wallet_address" placeholder="wallet_address" 
+            <input type="text" name="wallet_address" placeholder="wallet_address" className='input-field'
             value={formData.wallet_address} onChange={handleChange}/>
           
            
            <label>Location</label>
-            <input type='text' name='location' placeholder='City,State/Region' 
+            <input type='text' name='location' placeholder='City,State/Region' className='input-field'
             value={formData.location} onChange={handleChange}required/>
 
-            <button type="submit">Register</button>
+            <button type="submit" className='submit-button'>Register</button>
         </form>
-<p>{message}</p>
+<p className='message'>{message}</p>
     </div> 
-   
+   </div>
     );
 }
 
