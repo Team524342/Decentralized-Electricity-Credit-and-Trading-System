@@ -66,7 +66,7 @@ function ProducerDashboard() {
     <div className="producer-dashboard">
       {/* Sidebar */}
       <aside className="sidebar">
-        <h2>⚡ ECMS</h2>
+        <h2>⚡ RTDEC&DS</h2>
         <ul>
           <li className="active">Dashboard</li>
           <li>Transactions</li>
