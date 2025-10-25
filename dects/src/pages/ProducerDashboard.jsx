@@ -15,6 +15,7 @@ import "../assets/producer.css";
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
 function ProducerDashboard() {
+<<<<<<< HEAD
   const [energyGenerated, setEnergyGenerated] = useState(150);
   const [tokenBalance, setTokenBalance] = useState(120);
   const [earnings, setEarnings] = useState(4560);
@@ -48,6 +49,18 @@ function ProducerDashboard() {
     setTokenBalance(tokenBalance + energyGenerated);
   };
 
+=======
+  const [generatedEnergy, setGeneratedEnergy] = useState(50); // Example: 50 kWh
+  const [tokenBalance, setTokenBalance] = useState(50); // Example: 50 ETK
+  const [pricePerETK, setPricePerETK] = useState(12); // ₹12 per ETK
+  const [earnings, setEarnings] = useState(0);
+
+  const mintTokens = () => {
+    alert(`${generatedEnergy} ETK minted successfully!`);
+    setTokenBalance(tokenBalance + generatedEnergy);
+  };
+
+>>>>>>> 6ac8c27c7ca9d1872be07dddabc2958ec6c585aa
   const sellTokens = () => {
     const amount = prompt("Enter ETK amount to sell:");
     if (amount && amount <= tokenBalance) {
