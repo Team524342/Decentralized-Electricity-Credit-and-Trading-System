@@ -11,6 +11,7 @@ import {
   Legend,
 } from "chart.js";
 import "../assets/producer.css";
+import { NavLink } from "react-router-dom";
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
@@ -65,17 +66,59 @@ function ProducerDashboard() {
   return (
     <div className="producer-dashboard">
       {/* Sidebar */}
-      <aside className="sidebar">
-        <h2>⚡ RTDEC&DS</h2>
-        <ul>
-          <li className="active">Dashboard</li>
-          <li>Transactions</li>
-          <li>Mint Tokens</li>
-          <li>Sell Tokens</li>
-          <li>Reports</li>
-          <li>Profile</li>
-        </ul>
-      </aside>
+     <aside className="sidebar">
+  <h2>⚡ RTDEC&DS</h2>
+  <ul>
+    <li>
+      <NavLink
+        to="/producer"
+        className={({ isActive }) => (isActive ? "active" : "")}
+      >
+        Dashboard
+      </NavLink>
+    </li>
+    <li>
+      <NavLink
+        to="/producer/transactions"
+        className={({ isActive }) => (isActive ? "active" : "")}
+      >
+        Transactions
+      </NavLink>
+    </li>
+    <li>
+      <NavLink
+        to="/producer/mint"
+        className={({ isActive }) => (isActive ? "active" : "")}
+      >
+        Mint Tokens
+      </NavLink>
+    </li>
+    <li>
+      <NavLink
+        to="/producer/sell"
+        className={({ isActive }) => (isActive ? "active" : "")}
+      >
+        Sell Tokens
+      </NavLink>
+    </li>
+    <li>
+      <NavLink
+        to="/producer/reports"
+        className={({ isActive }) => (isActive ? "active" : "")}
+      >
+        Reports
+      </NavLink>
+    </li>
+    <li>
+      <NavLink
+        to="/producer/profile"
+        className={({ isActive }) => (isActive ? "active" : "")}
+      >
+        Profile
+      </NavLink>
+    </li>
+  </ul>
+</aside>
 
       {/* Main content */}
       <main className="main-content">

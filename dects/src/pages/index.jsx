@@ -68,29 +68,10 @@ function IndexPage() {
         </div>
       </section>
 
-      {/* Team Section */}
-      <section className="team">
-        <h2>👨‍💻 Project Team</h2>
-        <div className="team-grid">
-          <div className="team-card">
-            <h3>SHAIK BABA</h3>
-            <p>ID: 160522733042</p>
-          </div>
-          <div className="team-card">
-            <h3>M A FEROZ ALI</h3>
-            <p>ID: 160522733043</p>
-          </div>
-          <div className="team-card">
-            <h3>MOHD ABDUL GHANI</h3>
-            <p>ID: 160522733052</p>
-          </div>
-        </div>
-        <p className="guide">Guided by: <b>Dr. M.A. Bari</b> – Dean Academics</p>
-      </section>
-
       {/* Footer */}
       <footer className="footer">
-        <p>© 2025 Real-Time Decentralized Energy Credit System | All Rights Reserved</p>
+        <p>© 2025 Real-Time Decentralized Energy Credit and Trading System | All Rights Reserved</p>
+        <p>Devloped by team BFG</p>
       </footer>
     </div>
   );

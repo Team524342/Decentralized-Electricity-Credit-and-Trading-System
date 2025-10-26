@@ -4,6 +4,11 @@ import { BrowserRouter as Router, Routes, Route, Navigate, Link } from 'react-ro
 import Register from './pages/Register';
 // import ConsumerDashboard from './pages/ConsumerDashboard';
 import ProducerDashboard from './pages/ProducerDashboard';
+import ProducerTransactions from "./pages/producertracsaction";
+import MintTokens from "./pages/minttokens";
+import SellTokens from "./pages/selltokens";
+import ProducerReports from "./pages/producerreports";
+import ProducerProfile from "./pages/producerprofile";
 import AdminPanal from './pages/adminPanal';
 import Index from './pages/index';
 import Login from './pages/login';
@@ -27,6 +32,11 @@ function App() {
         <Route path="/login" element={<Login />} />
         {/* <Route path="/consumer" element={<ConsumerDashboard />} /> */}
         <Route path="/producer" element={<ProducerDashboard />} />
+        <Route path="/producer/transactions" element={<ProducerTransactions />} />
+        <Route path="/producer/mint" element={<MintTokens />} />
+        <Route path="/producer/sell" element={<SellTokens />} />
+        <Route path="/producer/reports" element={<ProducerReports />} />
+        <Route path="/producer/profile" element={<ProducerProfile />} />
         <Route path="/adminpanal" element={<AdminPanal />} />
         {/* Fallback: redirect unknown routes to register */}
         <Route path="*" element={<Navigate to="/" replace />} />

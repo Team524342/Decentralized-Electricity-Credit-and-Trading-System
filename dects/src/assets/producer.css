@@ -154,3 +154,33 @@
 
 .sell-btn { background: #06b6d4; }
 .sell-btn:hover { background: #0891b2; }
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar ul li {
+  margin: 8px 0;
+}
+
+.sidebar ul li a {
+  color: white;
+  text-decoration: none;
+  display: block;
+  padding: 12px 10px;
+  border-radius: 8px;
+  transition: background 0.3s;
+}
+
+.sidebar ul li a:hover {
+  background: #4338ca;
+}
+
+.sidebar ul li a.active {
+  background: #4338ca;
+}
+
+.profile-img {
+  border-radius: 50%;
+}
