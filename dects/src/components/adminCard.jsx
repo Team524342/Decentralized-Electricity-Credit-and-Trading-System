@@ -2,9 +2,9 @@ import React from "react";
 import { TrendingUp } from 'lucide-react';
 import '../assets/adminPanal.css';
 
-const AdminCard =({ icon: Icon, title , value,trend,color }) =>{
+const AdminCard =({ icon: Icon, title, value, trend, color }) =>{
     return(
-        <div className="stat-card" style={{ borderLeftColor: color}}>
+        <div className="stat-card" style={{ borderLeft: `5px solid ${color}` }}>
             <div className="stat-content">
                 <div className="stat-left">
                     <p className="stat-title">{title}</p>
