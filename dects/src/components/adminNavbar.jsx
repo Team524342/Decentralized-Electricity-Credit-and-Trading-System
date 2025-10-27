@@ -3,7 +3,7 @@ import "../assets/adminPanal.css";
 
 const AdminNavbar = () => {
     return  (
-        <div className="navbar">
+        <div className="navbar"  style={{backgroundColor :'#ffffff'}}>
             <h3 className="navbar-title">Admin Dashboard</h3>
             <div className="navbar-right">
                 <button className="logout-btn">Logut</button>
