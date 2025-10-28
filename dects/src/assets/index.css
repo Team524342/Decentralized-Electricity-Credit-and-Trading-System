@@ -1,126 +1,277 @@
+/* 🌟 Global Styles */
 .index-container {
   font-family: "Poppins", sans-serif;
-  color: #1e3a5f;
-  background-color: #f5f7fa;
+  color: #0a2540; /* Deep navy text */
+  background-color: #f8fafc; /* Light background */
+  overflow-x: hidden;
 }
 
-/* Navbar */
+/* 🧭 Navbar */
 .navbar {
-  background-color: #1e3a5f;
+  background: linear-gradient(90deg, #0a2540, #003566);
   color: white;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px 40px;
+  padding: 18px 50px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
 }
 
 .logo {
-  font-size: 18px;
-  font-weight: bold;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: #a7f3d0; /* Soft green accent */
 }
 
 .nav-links {
   list-style: none;
   display: flex;
-  gap: 25px;
+  gap: 28px;
 }
 
 .nav-links a {
-  color: white;
+  color: #e2e8f0;
   text-decoration: none;
   font-weight: 500;
-  transition: 0.3s;
+  transition: 0.3s ease;
 }
 
 .nav-links a:hover {
-  color: #f8d210;
+  color: #a7f3d0;
+  transform: translateY(-2px);
 }
 
-/* Hero Section */
+/* 🎯 Hero Section */
 .hero {
   text-align: center;
-  background: linear-gradient(to right, #1e3a5f, #305a8f);
+  background: linear-gradient(135deg, #003566 0%, #0a2540 60%, #0d9488 100%);
   color: white;
-  padding: 100px 40px;
+  padding: 100px 40px 140px;
+  position: relative;
+  overflow: hidden;
 }
 
 .hero h1 {
-  font-size: 2rem;
+  font-size: 2.5rem;
   margin-bottom: 20px;
+  letter-spacing: 1px;
+  animation: fadeIn 1s ease-in;
 }
 
 .hero p {
   max-width: 700px;
-  margin: 0 auto 30px auto;
-  line-height: 1.6;
+  margin: 0 auto 30px;
+  line-height: 1.7;
+  color: #f1f5f9;
 }
 
+.hero-img {
+  margin-top: 40px;
+  max-width: 650px;
+  width: 90%;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
+  animation: slideUp 1.2s ease-in-out;
+}
+
+/* 🔘 Buttons */
 .btn-group .btn {
   margin: 10px;
   padding: 12px 25px;
   border-radius: 10px;
   text-decoration: none;
   font-weight: 600;
-  transition: 0.3s;
+  transition: 0.3s ease;
 }
 
 .primary {
-  background-color: #f8d210;
-  color: #1e3a5f;
+  background-color: #a7f3d0;
+  color: #0a2540;
 }
 
 .secondary {
   background-color: white;
-  color: #1e3a5f;
+  color: #0a2540;
+  border: 2px solid #a7f3d0;
 }
 
 .tertiary {
   background-color: transparent;
-  border: 2px solid white;
-  color: white;
+  border: 2px solid #ffffff;
+  color: #ffffff;
 }
 
 .btn:hover {
-  opacity: 0.8;
+  transform: translateY(-2px);
+  opacity: 0.9;
 }
 
-/* Overview Section */
-.overview {
-  padding: 60px 40px;
+/* ⚙️ About Section */
+.about {
+  padding: 80px 50px;
   text-align: center;
+  background-color: #ffffff;
+}
+
+.about h2 {
+  color: #0a2540;
+  font-weight: 700;
+  margin-bottom: 25px;
+}
+
+.about p {
+  max-width: 800px;
+  margin: 0 auto;
+  font-size: 1rem;
+  line-height: 1.8;
+  color: #334155;
+}
+
+.about-img {
+  margin-top: 40px;
+  width: 120px;
+  opacity: 0.9;
+}
+
+/* 📘 Overview Section */
+.overview {
+  padding: 80px 40px;
+  text-align: center;
+  background-color: #f9fafb;
+}
+
+.overview h2 {
+  color: #0a2540;
+  font-weight: 600;
 }
 
 .overview-cards {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 25px;
-  margin-top: 30px;
+  gap: 30px;
+  margin-top: 40px;
 }
 
 .card {
   background: white;
   padding: 25px;
   border-radius: 12px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  border-top: 5px solid #0d9488;
 }
 
-/* Tech Stack */
-.tech {
-  background-color: #e9eef5;
-  padding: 60px 40px;
+.card:hover {
+  background: #ecfdf5;
+  transform: translateY(-6px);
+  border-top-color: #a7f3d0;
+}
+
+/* 🚀 Features Section */
+.features {
+  padding: 80px 40px;
+  background: linear-gradient(120deg, #0a2540, #003566);
+  color: white;
   text-align: center;
+}
+
+.features h2 {
+  color: #a7f3d0;
+}
+
+.features .card {
+  background: white;
+  color: #0a2540;
+  border-top: 5px solid #0d9488;
+}
+
+/* 💻 Tech Stack Section */
+.tech {
+  background: linear-gradient(90deg, #0a2540, #003566);
+  padding: 80px 40px;
+  text-align: center;
+  color: white;
+}
+
+.tech h2 {
+  color: #a7f3d0;
 }
 
 .tech ul {
   list-style: none;
   padding: 0;
   line-height: 2;
+  color: #e2e8f0;
+  max-width: 500px;
+  margin: 0 auto;
+  text-align: left;
 }
 
-/* Quick Access Section */
-.quick-access {
-  padding: 60px 40px;
+/* 🌿 Benefits Section */
+.benefits {
+  padding: 80px 40px;
   text-align: center;
+  background-color: #ffffff;
+}
+
+.benefits h2 {
+  color: #0a2540;
+}
+
+.benefits .card {
+  border-top: 5px solid #0d9488;
+}
+
+/* 👥 Team Section */
+.team {
+  padding: 80px 40px;
+  background-color: #f8fafc;
+  text-align: center;
+}
+
+.team h2 {
+  color: #0a2540;
+}
+
+.team-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 25px;
+  margin-top: 40px;
+}
+
+.team-card {
+  background: white;
+  padding: 25px 35px;
+  border-radius: 12px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+  transition: 0.3s ease;
+}
+
+.team-card:hover {
+  background: #ecfdf5;
+  transform: translateY(-4px);
+}
+
+.team-card img {
+  border-radius: 50%;
+  margin-bottom: 10px;
+  border: 3px solid #0d9488;
+}
+
+.guide {
+  margin-top: 35px;
+  font-style: italic;
+  color: #0d9488;
+}
+
+/* 🚀 Quick Access Section */
+.quick-access {
+  padding: 80px 40px;
+  text-align: center;
+  background-color: #ffffff;
 }
 
 .access-grid {
@@ -131,54 +282,195 @@
 }
 
 .access-card {
-  background: #1e3a5f;
-  color: white;
-  padding: 20px;
+  background: linear-gradient(135deg, #0a2540, #003566);
+  color: #a7f3d0;
+  padding: 25px;
   border-radius: 12px;
   text-decoration: none;
   font-weight: 500;
-  transition: 0.3s;
+  transition: all 0.3s ease;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
 }
 
 .access-card:hover {
-  background: #2e4a77;
+  background: #0d9488;
+  color: white;
+  transform: translateY(-4px);
 }
 
-/* Team Section */
-.team {
-  padding: 60px 40px;
-  background-color: #f5f7fa;
-  text-align: center;
-}
-
-.team-grid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
-}
-
-.team-card {
-  background: white;
-  padding: 20px 30px;
-  border-radius: 12px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.guide {
-  margin-top: 30px;
-  font-style: italic;
-}
-
-/* Footer */
+/* ⚓ Footer */
 .footer {
-  background-color: #162a46;
+  background: linear-gradient(90deg, #0a2540, #003566);
   color: white;
   text-align: center;
-  padding: 20px;
+  padding: 25px;
   font-size: 14px;
+  border-top: 3px solid #a7f3d0;
+}
+
+.footer p {
+  margin: 5px 0;
 }
 
 .tagline {
-    color: white;
+  color: #a7f3d0;
+  font-weight: 500;
+}
+
+/* ✨ Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* 🌍 General Page Container */
+.page-container {
+  max-width: 950px;
+  margin: 80px auto;
+  background: linear-gradient(145deg, #ffffff, #f8fafc);
+  padding: 50px 60px;
+  border-radius: 18px;
+  box-shadow: 0 8px 25px rgba(0, 53, 102, 0.08);
+  text-align: center;
+  animation: fadeIn 0.6s ease-in-out;
+  border-top: 5px solid #0d9488; /* light green accent */
+}
+
+/* ✨ Heading */
+.page-container h1 {
+  color: #003566; /* primary blue */
+  margin-bottom: 20px;
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+/* 📝 Paragraph Text */
+.page-container p {
+  color: #0a2540; /* dark text */
+  line-height: 1.8;
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+/* 🧩 Section Titles */
+.page-container h3 {
+  color: #0d9488; /* mint green */
+  margin-top: 30px;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+/* 💠 Lists */
+.page-container ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 15px;
+}
+
+.page-container ul li {
+  padding: 8px 0;
+  color: #334155;
+  font-size: 15px;
+  border-bottom: 1px solid #e2e8f0;
+  transition: color 0.3s;
+}
+
+.page-container ul li:hover {
+  color: #0d9488;
+}
+
+/* 🖼️ Images */
+.page-container img {
+  max-width: 300px;
+  margin-top: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 53, 102, 0.15);
+  transition: transform 0.3s;
+}
+
+.page-container img:hover {
+  transform: scale(1.05);
+}
+
+/* 📬 Contact Form */
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-top: 40px;
+  background: #ffffff;
+  padding: 35px;
+  border-radius: 15px;
+  box-shadow: 0 6px 18px rgba(0, 53, 102, 0.1);
+}
+
+.contact-form input,
+.contact-form textarea {
+  padding: 14px;
+  border-radius: 10px;
+  border: 1px solid #cbd5e1;
+  font-size: 15px;
+  outline: none;
+  transition: all 0.3s;
+  font-family: "Poppins", sans-serif;
+  background: #f8fafc;
+  color: #0a2540;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: #0d9488;
+  box-shadow: 0 0 6px rgba(13, 148, 136, 0.3);
+}
+
+/* 📤 Submit Button */
+.contact-form button {
+  background: linear-gradient(90deg, #0d9488, #003566);
+  color: #ffffff;
+  border: none;
+  padding: 14px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.contact-form button:hover {
+  background: linear-gradient(90deg, #003566, #0a2540);
+  transform: translateY(-2px);
+}
+
+/* 🌟 Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 💫 Responsive Design */
+@media (max-width: 768px) {
+  .page-container {
+    margin: 40px 20px;
+    padding: 30px;
+  }
+
+  .page-container h1 {
+    font-size: 1.7rem;
+  }
+
+  .contact-form {
+    padding: 25px;
+  }
 }

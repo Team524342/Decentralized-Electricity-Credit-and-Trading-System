@@ -1,77 +1,137 @@
 import React from "react";
-import '../assets/index.css';
+import "../assets/index.css";
+import { NavLink } from "react-router-dom";
+
 
 function IndexPage() {
   return (
     <div className="index-container">
-      {/* Header / Navbar */}
+      {/* 🌐 Header / Navbar */}
       <header className="navbar">
-        <div className="logo">⚡ Electricity Credit & Trading System</div>
-        <ul className="nav-links">
-          <li><a href="/">Home</a></li>
-          <li><a href="/marketplace">Marketplace</a></li>
-          <li><a href="/about">About</a></li>
-          <li><a href="/contact">Contact</a></li>
-        </ul>
-      </header>
+  <div className="logo">⚡ RTDECTS</div>
+  <ul className="nav-links">
+    <li><NavLink to="/home">Home</NavLink></li>
+    <li><NavLink to="/marketplace">Marketplace</NavLink></li>
+    <li><NavLink to="/about">About</NavLink></li>
+    <li><NavLink to="/contact">Contact</NavLink></li>
+  </ul>
+</header>
 
-      {/* Hero Section */}
+      {/* 🌟 Hero Section */}
       <section className="hero">
-        <h1>Real-Time Decentralized Electricity Credit and Trading System</h1>
+        <h1>Real-Time Decentralized Electricity Credit & Trading System</h1>
         <p className="tagline">
-          Empowering Producers, Consumers, and Government through Blockchain, 
-          Smart Contracts, and AI-driven Dynamic Pricing.
+          A Blockchain and AI-powered platform revolutionizing renewable energy
+          trading between Producers, Consumers, and Government authorities.
         </p>
         <div className="btn-group">
           <a href="/producer" className="btn primary">Producer Login</a>
           <a href="/consumer" className="btn secondary">Consumer Login</a>
           <a href="/admin" className="btn tertiary">Admin Login</a>
         </div>
+        {/* <img
+          src="https://cdn.dribbble.com/users/1154756/screenshots/15596082/media/9152f6f98b1ad857d4d9a0cb1d2d7c17.png?compress=1&resize=1200x900"
+          alt="Energy Trading Illustration"
+          className="hero-img"
+        /> */}
       </section>
 
-      {/* System Overview */}
+      {/* 🔗 System Flow */}
       <section className="overview">
-        <h2>🔗 System Flow Overview</h2>
+        <h2>🔗 System Workflow</h2>
         <div className="overview-cards">
           <div className="card">
             <h3>🔆 Producer</h3>
             <p>
-              Generates renewable energy, mints Energy Tokens (ETK), and sells
-              them to consumers through blockchain-based smart contracts.
+              Generates electricity from renewable sources, mints Energy Tokens (ETK),
+              and lists them for sale on the decentralized marketplace.
             </p>
           </div>
           <div className="card">
             <h3>💡 Consumer</h3>
             <p>
-              Purchases ETK tokens to offset electricity bills and contribute to 
-              renewable energy usage.
+              Buys ETK tokens to pay energy bills or trade for profit while supporting
+              sustainable power generation.
             </p>
           </div>
           <div className="card">
             <h3>🏛️ Government</h3>
             <p>
-              Monitors energy data, verifies transactions, and distributes 
-              subsidies automatically using smart contracts.
+              Verifies transactions, monitors energy flow, and automates incentives
+              using smart contracts.
             </p>
           </div>
         </div>
       </section>
 
-      {/* Quick Access Section */}
+      {/* 🚀 Key Features */}
+      <section className="features">
+        <h2>🚀 Key Features</h2>
+        <div className="overview-cards">
+          <div className="card">
+            <h3>🔒 Blockchain Security</h3>
+            <p>
+              All transactions are encrypted and stored on a decentralized ledger,
+              ensuring transparency and tamper-proof records.
+            </p>
+          </div>
+          <div className="card">
+            <h3>⚡ AI-based Dynamic Pricing</h3>
+            <p>
+              Smart algorithms adjust token prices dynamically based on supply, demand,
+              and grid load.
+            </p>
+          </div>
+          <div className="card">
+            <h3>💰 Automated Settlement</h3>
+            <p>
+              Smart Contracts ensure instant payments and settlement between producers
+              and consumers.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* 🌍 Benefits */}
+      <section className="benefits">
+        <h2>🌿 Project Impact</h2>
+        <div className="overview-cards">
+          <div className="card">
+            <h3>♻️ Promotes Renewable Energy</h3>
+            <p>
+              Encourages use of clean energy by rewarding green power producers.
+            </p>
+          </div>
+          <div className="card">
+            <h3>⚙️ Transparent Transactions</h3>
+            <p>
+              Every ETK trade is visible and verified on blockchain.
+            </p>
+          </div>
+          <div className="card">
+            <h3>👥 Inclusive Economy</h3>
+            <p>
+              Brings both rural and urban producers into a unified digital marketplace.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* 🔗 Quick Access Section */}
       <section className="quick-access">
-        <h2>🚀 Quick Access</h2>
+        <h2>🔗 Quick Access</h2>
         <div className="access-grid">
           <a href="/producer" className="access-card">Producer Dashboard</a>
           <a href="/consumer" className="access-card">Consumer Dashboard</a>
           <a href="/admin" className="access-card">Admin Dashboard</a>
-          <a href="/marketplace" className="access-card">Token Marketplace</a>
+          <a href="/marketplace" className="access-card">ETK Marketplace</a>
         </div>
       </section>
 
-      {/* Footer */}
+      {/* ⚙️ Footer */}
       <footer className="footer">
-        <p>© 2025 Real-Time Decentralized Energy Credit and Trading System | All Rights Reserved</p>
-        <p>Devloped by team BFG</p>
+        <p>© 2025 RTDECTS — Real-Time Decentralized Electricity Credit & Trading System</p>
+        <p>Developed by <strong>Team BFG</strong></p>
       </footer>
     </div>
   );
