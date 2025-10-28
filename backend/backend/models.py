@@ -1,3 +1,4 @@
+# E:\Decentralized-Electricity-Credit-and-Trading-System\backend\backend\models.py
 class Producer:
     def __init__(self, id, name, wallet, energy_generated, token_balance, earnings):
         self.id = id

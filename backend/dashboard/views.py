@@ -1,9 +1,14 @@
+# E:\Decentralized-Electricity-Credit-and-Trading-System\backend\dashboard\views.py
 import pandas as pd
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from .models import User
 from rest_framework import generics
 from .serializers import UserSerializer
+from django.shortcuts import redirect
+from django.contrib.auth import authenticate, login, logout
+from django.contrib import messages
+from django.views.decorators.csrf import csrf_exempt
 CSV_FILE='data/energy-usage.csv'
 TOKEN_BALANCES={
     "customer_1":100
@@ -30,3 +35,49 @@ def get_energy_usage(request,consumer_id):
 class UserRegisterView(generics.CreateAPIView):
     queryset=User.objects.all()
     serializer_class=UserSerializer
+
+
+@csrf_exempt
+@api_view(['POST'])
+def login_view(request):
+    """
+    Verify email and password from the existing 'users' table.
+    Redirect based on role.
+    """
+    email = request.data.get('email')
+    password = request.data.get('password')
+
+    if not email or not password:
+        return Response({'error': 'Email and password required'}, status=400)
+
+    try:
+        user_obj = User.objects.get(email=email)
+    except User.DoesNotExist:
+        return Response({'error': 'Invalid email or password'}, status=401)
+
+    # Check passs.. hash
+    from django.contrib.auth.hashers import check_password
+    if check_password(password, user_obj.password):
+        role = user_obj.role.lower()
+        if role == 'consumer':
+            return Response({'message': 'Login successful', 'redirect_to': '/consumer/dashboard'})
+        elif role == 'producer':
+            return Response({'message': 'Login successful', 'redirect_to': '/producer/dashboard'})
+        elif role == 'admin':
+            return Response({'message': 'Login successful', 'redirect_to': '/admin/dashboard'})
+        else:
+            return Response({'error': 'Unknown role'}, status=400)
+    else:
+        return Response({'error': 'Invalid email or password'}, status=401)
+    
+@api_view(['GET'])
+def consumer_dashboard(request):
+    return Response({"message": "Welcome Consumer!"})
+
+@api_view(['GET'])
+def producer_dashboard(request):
+    return Response({"message": "Welcome Producer!"})
+
+@api_view(['GET'])
+def admin_dashboard(request):
+    return Response({"message": "Welcome Admin!"})
