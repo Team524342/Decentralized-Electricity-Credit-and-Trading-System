@@ -74,14 +74,14 @@ function LoginPage() {
             />
           </div>
 
-          <div className="input-group">
+          {/* <div className="input-group">
             <label>Role</label>
             <select value={role} onChange={(e) => setRole(e.target.value)}>
               <option value="producer">Producer</option>
               <option value="consumer">Consumer</option>
               <option value="admin">Admin</option>
             </select>
-          </div>
+          </div> */}
 
           <button type="submit" className="btn primary">
             Login
