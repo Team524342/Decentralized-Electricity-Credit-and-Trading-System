@@ -60,11 +60,11 @@ def login_view(request):
     if check_password(password, user_obj.password):
         role = user_obj.role.lower()
         if role == 'consumer':
-            return Response({'message': 'Login successful', 'redirect_to': '/consumer/dashboard'})
+            return Response({'message': 'Login successful', 'redirect_to': '/consumer'})
         elif role == 'producer':
-            return Response({'message': 'Login successful', 'redirect_to': '/producer/dashboard'})
+            return Response({'message': 'Login successful', 'redirect_to': '/producer'})
         elif role == 'admin':
-            return Response({'message': 'Login successful', 'redirect_to': '/admin/dashboard'})
+            return Response({'message': 'Login successful', 'redirect_to': '/adminpanal'})
         else:
             return Response({'error': 'Unknown role'}, status=400)
     else:
