@@ -1,3 +1,4 @@
+# E:\Decentralized-Electricity-Credit-and-Trading-System\backend\dashboard\serializers.py
 from rest_framework import serializers
 from .models import User
 class UserSerializer(serializers.ModelSerializer):

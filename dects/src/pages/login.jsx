@@ -1,26 +1,49 @@
 import React, { useState } from "react";
 import "../assets/login.css";
+import { useNavigate } from "react-router-dom";
 
 function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [role, setRole] = useState("producer");
+  const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
 
-    // Later connect this to backend endpoint
-    // For now simulate login redirection
-    if (role === "producer") {
-      window.location.href = "/producer";
-    } else if (role === "consumer") {
-      window.location.href = "/consumer";
-    } else if (role === "admin") {
-      window.location.href = "/admin";
-    } else {
-      alert("Invalid role selected!");
+    try {
+      const response = await fetch("http://127.0.0.1:8000/api/login/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: email,
+          password: password,
+          role: role, // send role too if your backend uses it
+        }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        alert(data.message || "Login successful!");
+
+        // ✅ Redirect using backend’s redirect_to
+        if (data.redirect_to) {
+          navigate(data.redirect_to);
+        } else {
+          alert("Redirect path missing from backend!");
+        }
+      } else {
+        alert(data.error || "Invalid credentials!");
+      }
+    } catch (error) {
+      console.error("Login failed:", error);
+      alert("Something went wrong! Check your backend connection.");
     }
   };
+
 
   return (
     <div className="login-container">
@@ -51,14 +74,14 @@ function LoginPage() {
             />
           </div>
 
-          <div className="input-group">
+          {/* <div className="input-group">
             <label>Role</label>
             <select value={role} onChange={(e) => setRole(e.target.value)}>
               <option value="producer">Producer</option>
               <option value="consumer">Consumer</option>
               <option value="admin">Admin</option>
             </select>
-          </div>
+          </div> */}
 
           <button type="submit" className="btn primary">
             Login
