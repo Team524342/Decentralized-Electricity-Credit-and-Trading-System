@@ -1,8 +1,9 @@
+// E:\Decentralized-Electricity-Credit-and-Trading-System\dects\src\App.js
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate, Link } from 'react-router-dom';
 
 import Register from './pages/Register';
-// import ConsumerDashboard from './pages/ConsumerDashboard';
+import ConsumerDashboard from './pages/ConsumerDashboard';
 import ProducerDashboard from './pages/ProducerDashboard';
 import ProducerTransactions from "./pages/producertracsaction";
 import MintTokens from "./pages/minttokens";
@@ -22,7 +23,7 @@ function App() {
     <Router>
       <nav style={styles.navbar}>
         <Link to="/" style={styles.link}>Register</Link>
-        {<Link to="/consumer" style={styles.link}>Consumer</Link> }
+        <Link to="/consumer" style={styles.link}>Consumer</Link> 
         <Link to="/producer" style={styles.link}>Producer</Link>
         <Link to="/adminpanal" style={styles.link}>Admin Panal</Link>
         <Link to="/index" style={styles.link}>Index</Link>
@@ -38,7 +39,7 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/login" element={<Login />} />
-        {/* <Route path="/consumer" element={<ConsumerDashboard />} /> */}
+        <Route path="/consumer" element={<ConsumerDashboard />} />
         <Route path="/producer" element={<ProducerDashboard />} />
         <Route path="/producer/transactions" element={<ProducerTransactions />} />
         <Route path="/producer/mint" element={<MintTokens />} />

@@ -28,6 +28,7 @@ function LoginPage() {
 
       if (response.ok) {
         alert(data.message || "Login successful!");
+        console.log("Redirect path:", data.redirect_to);
 
         // ✅ Redirect using backend’s redirect_to
         if (data.redirect_to) {
