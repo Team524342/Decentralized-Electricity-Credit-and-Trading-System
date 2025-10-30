@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import AdminCard from "../components/adminCard";
 import { Users, TrendingUp, DollarSign, Zap } from 'lucide-react';
 
-function Dashboard(){ return <div><h2>Dashboard</h2><p>Overview stats...</p></div>; }
+function Overview(){ return <div><h2>Overview</h2><p>Overview stats...</p></div>; }
 function FileComplaint(){ return <div><h2>File Complaint</h2><p>Form goes here</p></div>; }
 function History(){ return <div><h2>Complaint History</h2><p>List of complaints</p></div>; }
 function Track(){ return <div><h2>Track Status</h2><p>Track active tickets</p></div>; }
@@ -17,7 +17,7 @@ function Settings(){ return <div><h2>Settings</h2></div>; }
 function Help(){ return <div><h2>Help</h2></div>; }
 
 const pageMap = {
-  dashboard: <Dashboard/>,
+  Overview: <Overview/>,
   file: <FileComplaint/>,
   history: <History/>,
   track: <Track/>,
@@ -29,7 +29,7 @@ const pageMap = {
 };
 
 const AdminPanal = () => {
-    const [active, setActive] = useState("dashboard");
+    const [active, setActive] = useState("Overview");
     const [collapsed, setCollapsed] = useState(false);
 
     return (

@@ -13,28 +13,38 @@ import {
 } from "lucide-react";
 
 const tabs = [
-    { id: "dashboard", label: "Dashboard", icon: Home },
+    { id: "Overview", label: "Overview", icon: Home },
     { id: "file", label: "File Complaint", icon: Plus },
     { id: "history", label: "Complaint History", icon: List },
     { id: "track", label: "Track Status", icon: Map },
-    { id: "technician", label: "Technician Board", icon: Wrench },
+    { id: "treading", label: "Treading", icon: Wrench },
     { id: "reports", label: "Reports", icon: BarChart2 },
     { id: "profile", label: "Profile", icon: User },
     { id: "settings", label: "Settings", icon: Settings },
     { id: "help", label: "Help", icon: HelpCircle },
 ];
 
-export default function Sidebar({ active, setActive, collapsed, setCollapsed, role = "admin" }) {
+export default function Sidebar({ active, setActive, collapsed, setCollapsed, role = 'admin' }) {
+    // Normalize role to known values
+    const r = (role || 'admin').toString().toLowerCase();
+
     const visibleTabs = tabs.filter(t => {
-        if (role === "admin") {
-            return !["technician", "settings", "reports", "manage"].includes(t.id);
-        } return true;
+        // Admin sees all tabs
+        if (r === 'admin') return true;
+
+        // Producer: hide filing/history/track features
+        if (r === 'producer') return !["file", "history", "track", "manage"].includes(t.id);
+
+        // Consumer: hide technician/trading/report management
+        if (r === 'consumer') return !["treading", "reports", "manage"].includes(t.id);
+
+        return true;
     });
 
     return (
         <aside className={`sidebar ${collapsed ? "collapsed" : ""}`} aria-label="Main sidebar">
             <div className="sidebar-top">
-             <div className="brand" onClick={() => { setActive("dashboard"); }}>
+             <div className="brand" onClick={() => { setActive("Overview"); }}>
               <div className="brand-logo">⚡</div>
               <span className="brand-text">Electro</span>
              </div>

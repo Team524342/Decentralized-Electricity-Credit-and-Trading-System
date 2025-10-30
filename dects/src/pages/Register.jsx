@@ -6,7 +6,7 @@ function Register(){
         name:'',
         email:'',
         password:'',
-        role:'consumer',
+        role:'',
         wallet_address:'',
         location:''
     });
@@ -57,7 +57,8 @@ function Register(){
             value={formData.password} onChange={handleChange}required />
            
            <label>Role</label>
-           <select name='Role' value={formData.role} onChange={handleChange} className='input-field'>
+           <select name='role' value={formData.role} onChange={handleChange} className='input-field'>
+            <option value="">Select Role</option>
             <option value="consumer">Consumer</option>
             <option value="producer">Producer</option>
            </select>

@@ -120,6 +120,8 @@
   flex:1;
   overflow:auto;
   padding-right:6px;
+  /* Keep nav scrolling contained so collapsing still allows scrolling */
+  max-height: calc(100vh - 120px);
 }
 
 .nav-item {
@@ -140,6 +142,22 @@
   background: linear-gradient(90deg,var(--accent), #8be9f6 120%);
   color: #012028;
   box-shadow: 0 6px 18px rgba(6,182,212,0.12);
+}
+
+/* When collapsed: center icons, keep them legible and prevent shrinking */
+.sidebar.collapsed .nav-item {
+  justify-content: center;
+  padding: 12px 6px;
+}
+.sidebar.collapsed .nav-item.active { box-shadow: none; }
+
+.sidebar.collapsed .nav-item .nav-label { display: none; }
+
+/* Force icon size when collapsed to avoid SVG scaling issues */
+.sidebar.collapsed .icon,
+.sidebar.collapsed .nav-item svg {
+  width: 24px !important;
+  height: 24px !important;
 }
 
 /* icon sizing */
