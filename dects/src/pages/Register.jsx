@@ -1,6 +1,8 @@
 import React ,{ useState } from 'react';
 import '../assets/register.css';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+
 function Register(){
     const[formData,setFormData]=useState({
         name:'',
@@ -14,6 +16,7 @@ function Register(){
     const handleChange=(e) =>{
         setFormData({ ...formData,[e.target.name]:e.target.value})
     };
+    const navigate = useNavigate();
 
 
 
@@ -24,15 +27,22 @@ function Register(){
     try{
         const res =await 
         axios.post('http://127.0.0.1:8000/api/register/',formData);
-        console.log("Response:",res.data)
-        setMessage('Registration successful!');
-        
+        console.log("Response:", res.data);
+        if (res.status >= 200 && res.status < 300) {
+            setMessage('Registration successful!');
+            navigate('/login', { replace: true });
+            return;
+        } else {
+            setMessage('Registration returned unexpected status.');
+        }
 
 
     }catch(error){
         console.error("Registration error:",error.response?.data||error.message);
         setMessage('Registration failed . Check Details or server connections.');
     }
+
+    
    };
 
     return(
