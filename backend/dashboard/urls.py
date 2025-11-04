@@ -3,6 +3,7 @@ from django.urls import path
 from . import views
 from .views import UserRegisterView
 from .views import login_view
+from django.urls import re_path
 urlpatterns=[
     path('token/<str:consumer_id>',views.get_token_balance),
     path('buy/<str:consumer_id>',views.buy_tokens),
@@ -12,4 +13,6 @@ urlpatterns=[
     path('consumer/dashboard', views.consumer_dashboard),
     path('producer/dashboard', views.producer_dashboard),
     path('admin/dashboard', views.admin_dashboard),
+    path('profile/<str:email>', views.get_user_profile, name='get_profile'),
+    re_path(r'^profile/(?P<email>[^/]+)/$', views.get_user_profile, name='get_profile'),
 ]

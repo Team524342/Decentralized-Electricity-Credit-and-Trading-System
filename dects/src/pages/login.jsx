@@ -1,3 +1,4 @@
+// E:\Decentralized-Electricity-Credit-and-Trading-System\dects\src\pages\login.jsx
 import React, { useState } from "react";
 import "../assets/login.css";
 import { useNavigate } from "react-router-dom";
@@ -8,11 +9,13 @@ function LoginPage() {
   const [role, setRole] = useState("producer");
   const navigate = useNavigate();
 
+  const API_BASE = process.env.REACT_APP_API_BASE_URL || "http://127.0.0.1:8000/api";
+
   const handleLogin = async (e) => {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://127.0.0.1:8000/api/login/", {
+      const response = await fetch(`${API_BASE}/login/`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -29,6 +32,8 @@ function LoginPage() {
       if (response.ok) {
         alert(data.message || "Login successful!");
         console.log("Redirect path:", data.redirect_to);
+
+        localStorage.setItem("loggedInEmail", email);
 
         // ✅ Redirect using backend’s redirect_to
         if (data.redirect_to) {
@@ -75,15 +80,7 @@ function LoginPage() {
             />
           </div>
 
-          {/* <div className="input-group">
-            <label>Role</label>
-            <select value={role} onChange={(e) => setRole(e.target.value)}>
-              <option value="producer">Producer</option>
-              <option value="consumer">Consumer</option>
-              <option value="admin">Admin</option>
-            </select>
-          </div> */}
-
+        
           <button type="submit" className="btn primary">
             Login
           </button>

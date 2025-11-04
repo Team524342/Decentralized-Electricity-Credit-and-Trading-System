@@ -9,6 +9,8 @@ from django.shortcuts import redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.views.decorators.csrf import csrf_exempt
+from .serializers import UserSerializer
+from rest_framework import status
 CSV_FILE='data/energy-usage.csv'
 TOKEN_BALANCES={
     "customer_1":100
@@ -81,3 +83,13 @@ def producer_dashboard(request):
 @api_view(['GET'])
 def admin_dashboard(request):
     return Response({"message": "Welcome Admin!"})
+
+@api_view(['GET'])
+def get_user_profile(request,email):
+    try:
+        user = User.objects.get(email=email)
+    except User.DoesNotExist:
+        return Response({'error':'User not found'}, status=status.HTTP_404_NOT_FOUND)
+    
+    serializer = UserSerializer(user)
+    return Response(serializer.data)
