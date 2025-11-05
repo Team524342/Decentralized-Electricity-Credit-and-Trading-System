@@ -1,3 +1,4 @@
+// E:\Decentralized-Electricity-Credit-and-Trading-System\dects\src\pages\adminPanal.jsx
 import React,{ useState } from "react";
 import Sidebar from "../components/adminSidebar";
 import Navbar from "../components/adminNavbar";
@@ -7,10 +8,10 @@ import AdminCard from "../components/adminCard";
 import { Users, TrendingUp, DollarSign, Zap } from 'lucide-react';
 
 function Overview(){ return <div><h2>Overview</h2><p>Overview stats...</p></div>; }
-function FileComplaint(){ return <div><h2>File Complaint</h2><p>Form goes here</p></div>; }
-function History(){ return <div><h2>Complaint History</h2><p>List of complaints</p></div>; }
-function Track(){ return <div><h2>Track Status</h2><p>Track active tickets</p></div>; }
-function Technician(){ return <div><h2>Technician Board</h2></div>; }
+function Pricing(){ return <div><h2>Pricing</h2><p>Form goes here</p></div>; }
+function History(){ return <div><h2>Transaction History</h2><p>List of transactions</p></div>; }
+function Trading(){ return <div><h2>Trading Status</h2><p>Track active tickets</p></div>; }
+function Users(){ return <div><h2>Users Board</h2></div>; }
 function Reports(){ return <div><h2>Reports</h2></div>; }
 function Profile(){ return <div><h2>Profile</h2></div>; }
 function Settings(){ return <div><h2>Settings</h2></div>; }
@@ -18,10 +19,10 @@ function Help(){ return <div><h2>Help</h2></div>; }
 
 const pageMap = {
   Overview: <Overview/>,
-  file: <FileComplaint/>,
+  pricing: <Pricing/>,
   history: <History/>,
-  track: <Track/>,
-  technician: <Technician/>,
+  trading: <Trading/>,
+  users: <Users/>,
   reports: <Reports/>,
   profile: <Profile/>,
   settings: <Settings/>,
