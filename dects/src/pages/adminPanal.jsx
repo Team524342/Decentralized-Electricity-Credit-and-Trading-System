@@ -6,12 +6,64 @@ import "../assets/adminPanal.css";
 import { Link } from "react-router-dom";
 import AdminCard from "../components/adminCard";
 import { Users, TrendingUp, DollarSign, Zap } from 'lucide-react';
+import {
+  ResponsiveContainer,
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend
+} from "recharts";
 
-function Overview(){ return <div><h2>Overview</h2><p>Overview stats...</p></div>; }
+const priceData = [
+  { name: "Jan", price: 400 },
+  { name: "Feb", price: 300 },
+  { name: "Mar", price: 500 },
+    { name: "Apr", price: 200 },
+    { name: "May", price: 278 },
+    { name: "Jun", price: 189 },
+    { name: "Jul", price: 239 },
+    { name: "Aug", price: 349 },
+    { name: "Sep", price: 450 },
+];
+
+function Overview() {
+  return (
+    <div>
+      <h2>Overview</h2>
+      <p>Overview stats...</p>
+
+      <div className="lg:col-span-2 bg-white rounded-lg shadow p-6">
+        <h3 className="text-lg font-semibold mb-4">
+          Real-Time Energy Pricing
+        </h3>
+        <ResponsiveContainer width="100%" height={300}>
+          <LineChart data={priceData}>
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis dataKey="name" />
+            <YAxis />
+            <Tooltip />
+            <Legend />
+            <Line
+              type="monotone"
+              dataKey="price"
+              stroke="#3b82f6"
+              strokeWidth={2}
+              name="Price ($/kWh)"
+            />
+          </LineChart>
+        </ResponsiveContainer>
+      </div>
+    </div>
+  );
+}
+
 function Pricing(){ return <div><h2>Pricing</h2><p>Form goes here</p></div>; }
 function History(){ return <div><h2>Transaction History</h2><p>List of transactions</p></div>; }
 function Trading(){ return <div><h2>Trading Status</h2><p>Track active tickets</p></div>; }
-function Users(){ return <div><h2>Users Board</h2></div>; }
+function UsersBoard(){ return <div><h2>Users Board</h2></div>; }
 function Reports(){ return <div><h2>Reports</h2></div>; }
 function Profile(){ return <div><h2>Profile</h2></div>; }
 function Settings(){ return <div><h2>Settings</h2></div>; }
@@ -22,7 +74,7 @@ const pageMap = {
   pricing: <Pricing/>,
   history: <History/>,
   trading: <Trading/>,
-  users: <Users/>,
+  usersBoard: <UsersBoard/>,
   reports: <Reports/>,
   profile: <Profile/>,
   settings: <Settings/>,

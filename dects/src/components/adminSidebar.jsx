@@ -9,15 +9,17 @@ import {
   BarChart2,
   User,
   Settings,
-  HelpCircle
+  HelpCircle,
+  DollarSign,
+  TractorIcon
 } from "lucide-react";
 
 const tabs = [
     { id: "Overview", label: "Overview", icon: Home },
-    { id: "file", label: "File Complaint", icon: Plus },
-    { id: "history", label: "Complaint History", icon: List },
-    { id: "track", label: "Track Status", icon: Map },
-    { id: "treading", label: "Treading", icon: Wrench },
+    { id: "pricing", label: "Pricing", icon: DollarSign },
+    { id: "history", label: "Transaction History", icon: List },
+    { id: "trading", label: "Trading Status", icon: TractorIcon },
+    { id: "usersBoard", label: "Users board", icon: Wrench },
     { id: "reports", label: "Reports", icon: BarChart2 },
     { id: "profile", label: "Profile", icon: User },
     { id: "settings", label: "Settings", icon: Settings },
@@ -33,10 +35,10 @@ export default function Sidebar({ active, setActive, collapsed, setCollapsed, ro
         if (r === 'admin') return true;
 
         // Producer: hide filing/history/track features
-        if (r === 'producer') return !["file", "history", "track", "manage"].includes(t.id);
+        if (r === 'producer') return !["pricing", "history", "track", "manage"].includes(t.id);
 
         // Consumer: hide technician/trading/report management
-        if (r === 'consumer') return !["treading", "reports", "manage"].includes(t.id);
+        if (r === 'consumer') return !["trading", "reports", "manage"].includes(t.id);
 
         return true;
     });
