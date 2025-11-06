@@ -1,35 +1,64 @@
 # E:\Decentralized-Electricity-Credit-and-Trading-System\backend\dashboard\models.py
 from django.db import models
-from django.contrib.auth.hashers import make_password
-
+from django.contrib.auth.hashers import make_password, check_password
 # Create your models here.
-class User(models.Model):
-    ROLE_CHOICES=[
-        ('producer','Producer'),
-        ('consumer','Consumer'),
-        ('admin','Admin'),
-    ]
-    name =models.CharField(max_length=100)
-    email=models.EmailField(primary_key=True)
-    password=models.CharField(max_length=255)
-    role=models.CharField(max_length=20,choices=ROLE_CHOICES)
-    wallet_address=models.CharField(max_length=255,blank=True,null=True)
-    location=models.CharField(max_length=100,blank=True,null=True)
-    created_at=models.DateTimeField(auto_now_add=True)
-    class Meta:
-        managed = False 
-        db_table='users'
+# class User(models.Model):
+#     ROLE_CHOICES=[
+#         ('producer','Producer'),
+#         ('consumer','Consumer'),
+#         ('admin','Admin'),
+#     ]
+#     name =models.CharField(max_length=100)
+#     email=models.EmailField(primary_key=True)
+#     password=models.CharField(max_length=255)
+#     role=models.CharField(max_length=20,choices=ROLE_CHOICES)
+#     wallet_address=models.CharField(max_length=255,blank=True,null=True)
+#     location=models.CharField(max_length=100,blank=True,null=True)
+#     created_at=models.DateTimeField(auto_now_add=True)
+#     class Meta:
+#         managed = False 
+#         db_table='users'
 
-    def save(self,*args,**kwargs):
-        from django.contrib.auth.hashers import make_password
-        #automatically hash password before saving
-        if not self.pk or not self.password.startswith('pbkdf2_'):
-            self.password=make_password(self.password)
-        super().save(*args,**kwargs)
+#     def save(self,*args,**kwargs):
+#         from django.contrib.auth.hashers import make_password
+#         #automatically hash password before saving
+#         if not self.pk or not self.password.startswith('pbkdf2_'):
+#             self.password=make_password(self.password)
+#         super().save(*args,**kwargs)
         
-    def __str__(self):
-        return f"{self.name}({self.role})"
+#     def __str__(self):
+#         return f"{self.name}({self.role})"
     
+
+
+class User(models.Model):
+    ROLE_CHOICES = [
+        ('producer', 'Producer'),
+        ('consumer', 'Consumer'),
+        ('admin', 'Admin'),
+    ]
+
+    email = models.EmailField(primary_key=True)
+    name = models.CharField(max_length=100)
+    password = models.CharField(max_length=255)
+    role = models.CharField(max_length=20, choices=ROLE_CHOICES)
+    wallet_address = models.CharField(max_length=255, blank=True, null=True)
+    location = models.CharField(max_length=100, blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        managed = False  # 👈 Very important — do NOT alter the table
+        db_table = 'users'
+
+    def __str__(self):
+        return f"{self.name} ({self.role})"
+
+    # 🔐 Password handling
+    def set_password(self, raw_password):
+        self.password = make_password(raw_password)
+
+    def check_password(self, raw_password):
+        return check_password(raw_password, self.password)
    #smart meter
 class SmartMeter(models.Model):
     user=models.ForeignKey(User,on_delete=models.CASCADE,related_name='meters')

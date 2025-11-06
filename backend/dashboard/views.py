@@ -1,6 +1,5 @@
 # E:\Decentralized-Electricity-Credit-and-Trading-System\backend\dashboard\views.py
 import pandas as pd
-from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from .models import User
 from rest_framework import generics
@@ -11,10 +10,32 @@ from django.contrib import messages
 from django.views.decorators.csrf import csrf_exempt
 from .serializers import UserSerializer
 from rest_framework import status
+from rest_framework.decorators import api_view, authentication_classes, permission_classes
+from rest_framework.permissions import IsAuthenticated
+from dashboard.auth_backend import CustomJWTAuthentication
+
+
+
 CSV_FILE='data/energy-usage.csv'
 TOKEN_BALANCES={
     "customer_1":100
 }
+
+@api_view(['GET'])
+@authentication_classes([CustomJWTAuthentication])
+@permission_classes([IsAuthenticated])
+def consumer_dashboard(request):
+    user = request.user
+
+    if user.role != 'consumer':
+        return Response({"detail": "Access denied"}, status=403)
+
+    # Return consumer-specific data
+    return Response({
+        "message": f"Welcome {user.name}, your role is {user.role}",
+        "email": user.email,
+        "wallet_address": user.wallet_address,
+    })
 
 @api_view(['GET'])
 def get_token_balance(request,consumer_id):
