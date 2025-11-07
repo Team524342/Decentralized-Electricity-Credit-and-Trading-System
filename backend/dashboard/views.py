@@ -37,6 +37,34 @@ def consumer_dashboard(request):
         "wallet_address": user.wallet_address,
     })
 
+
+@api_view(['GET'])
+@authentication_classes([CustomJWTAuthentication])
+@permission_classes([IsAuthenticated])
+def producer_dashboard(request):
+    user = request.user
+
+    if getattr(user, 'role', '').lower() != 'producer':
+        return Response({"detail": "Access denied"}, status=403)
+
+    return Response({
+        "message": f"Welcome {user.name}, your role is {user.role}",
+        "email": user.email,
+        "wallet_address": user.wallet_address,
+    })
+
+
+@api_view(['GET'])
+@authentication_classes([CustomJWTAuthentication])
+@permission_classes([IsAuthenticated])
+def admin_dashboard(request):
+    user = request.user
+
+    if getattr(user, 'role', '').lower() != 'admin':
+        return Response({"detail": "Access denied"}, status=403)
+
+    return Response({"message": f"Welcome Admin {user.name}!"})
+
 @api_view(['GET'])
 def get_token_balance(request,consumer_id):
     balance=TOKEN_BALANCES.get(consumer_id,0)
@@ -93,17 +121,7 @@ def login_view(request):
     else:
         return Response({'error': 'Invalid email or password'}, status=401)
     
-@api_view(['GET'])
-def consumer_dashboard(request):
-    return Response({"message": "Welcome Consumer!"})
 
-@api_view(['GET'])
-def producer_dashboard(request):
-    return Response({"message": "Welcome Producer!"})
-
-@api_view(['GET'])
-def admin_dashboard(request):
-    return Response({"message": "Welcome Admin!"})
 
 @api_view(['GET'])
 def get_user_profile(request,email):

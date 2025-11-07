@@ -15,34 +15,58 @@ function LoginPage() {
     e.preventDefault();
 
     try {
-      const response = await fetch(`${API_BASE}/login/`, {
-        method: "POST",
+      // build full URL robustly and log for debugging
+      console.log('API_BASE=', API_BASE);
+      const base = API_BASE.replace(/\/$/, '');
+      const fullUrl = `${base}/login/`;
+      console.log('POST ->', fullUrl);
+
+      const response = await fetch(fullUrl, {
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          email: email,
-          password: password,
-          role: role, // send role too if your backend uses it
-        }),
+        body: JSON.stringify({ email, password }),
       });
 
-      const data = await response.json();
+      const contentType = response.headers.get('content-type') || '';
 
-      if (response.ok) {
-        alert(data.message || "Login successful!");
-        console.log("Redirect path:", data.redirect_to);
+      // If the server returned HTML (e.g. a 404 HTML page) parsing as JSON will fail.
+      if (!response.ok) {
+        // try to read plain text to show a useful error
+        const text = await response.text();
+        console.error('Login failed:', response.status, text);
+        alert(`Login failed (status ${response.status}). See console for details.`);
+        return;
+      }
 
-        localStorage.setItem("loggedInEmail", email);
+      // Successful HTTP status. Expect JSON.
+      if (contentType.includes('application/json')) {
+        const data = await response.json();
+        alert(data.message || 'Login successful!');
+        console.log('Login result:', data);
 
-        // ✅ Redirect using backend’s redirect_to
+        // store tokens and role for later requests (normalize role)
+        if (data.access) localStorage.setItem('access_token', data.access);
+        if (data.refresh) localStorage.setItem('refresh_token', data.refresh);
+        if (data.role) localStorage.setItem('user_role', data.role.toLowerCase());
+
+        // redirect to the backend-provided path if present, else fallback by role
         if (data.redirect_to) {
           navigate(data.redirect_to);
+        } else if (data.role) {
+          const r = data.role.toLowerCase();
+          if (r === 'consumer') navigate('/consumer');
+          else if (r === 'producer') navigate('/producer');
+          else if (r === 'admin') navigate('/adminpanal');
+          else navigate('/');
         } else {
-          alert("Redirect path missing from backend!");
+          navigate('/');
         }
       } else {
-        alert(data.error || "Invalid credentials!");
+        const text = await response.text();
+        console.error('Expected JSON but got:', contentType, text);
+        alert('Login failed: unexpected server response (not JSON). Check backend.');
       }
     } catch (error) {
       console.error("Login failed:", error);

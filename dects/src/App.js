@@ -17,6 +17,7 @@ import About from "./pages/about";
 import Contact from "./pages/contact";
 import Home from "./pages/home";
 import Login from './pages/login';
+import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
   return (
@@ -39,14 +40,14 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/consumer" element={<ConsumerDashboard />} />
-        <Route path="/producer" element={<ProducerDashboard />} />
+  <Route path="/consumer" element={<ProtectedRoute allowedRoles={['consumer']}><ConsumerDashboard /></ProtectedRoute>} />
+  <Route path="/producer" element={<ProtectedRoute allowedRoles={['producer']}><ProducerDashboard /></ProtectedRoute>} />
         <Route path="/producer/transactions" element={<ProducerTransactions />} />
         <Route path="/producer/mint" element={<MintTokens />} />
         <Route path="/producer/sell" element={<SellTokens />} />
         <Route path="/producer/reports" element={<ProducerReports />} />
         <Route path="/producer/profile" element={<ProducerProfile />} />
-        <Route path="/adminpanal" element={<AdminPanal />} />
+  <Route path="/adminpanal" element={<ProtectedRoute allowedRoles={['admin']}><AdminPanal /></ProtectedRoute>} />
         {/* Fallback: redirect unknown routes to register */}
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>

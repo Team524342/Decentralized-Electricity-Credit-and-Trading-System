@@ -59,6 +59,16 @@ class User(models.Model):
 
     def check_password(self, raw_password):
         return check_password(raw_password, self.password)
+    
+    # Django and DRF expect user objects to expose `is_authenticated`.
+    # Our custom User model doesn't inherit from Django's AbstractBaseUser,
+    # so provide a simple property to satisfy permission checks.
+    @property
+    def is_authenticated(self):
+        return True
+
+    def get_username(self):
+        return self.email
    #smart meter
 class SmartMeter(models.Model):
     user=models.ForeignKey(User,on_delete=models.CASCADE,related_name='meters')

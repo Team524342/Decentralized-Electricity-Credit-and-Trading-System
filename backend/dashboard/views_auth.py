@@ -1,9 +1,11 @@
 from rest_framework.response import Response
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, permission_classes
 from rest_framework import status
 from django.contrib.auth.hashers import check_password
 from .models import User
 from rest_framework_simplejwt.tokens import RefreshToken
+from rest_framework.permissions import IsAuthenticated
+from rest_framework_simplejwt.authentication import JWTAuthentication
 
 @api_view(['POST'])
 def login_user(request):
@@ -18,8 +20,9 @@ def login_user(request):
     if not check_password(password, user.password):
         return Response({'error': 'Invalid email or password'}, status=status.HTTP_401_UNAUTHORIZED)
 
-    # Manually generate JWT since AUTH_USER_MODEL is not used
-    refresh = RefreshToken()
+    # Generate JWT tokens tied to this user
+    refresh = RefreshToken.for_user(user)
+    # attach some custom claims
     refresh['email'] = user.email
     refresh['role'] = user.role
     refresh['name'] = user.name
@@ -31,3 +34,16 @@ def login_user(request):
         'name': user.name,
         'email': user.email,
     })
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def producer_dashboard(request):
+    # Use the request.user set by the authentication class
+    user = getattr(request, 'user', None)
+    if user is None:
+        return Response({"detail": "Authentication required"}, status=status.HTTP_401_UNAUTHORIZED)
+
+    if getattr(user, 'role', '').lower() != 'producer':
+        return Response({"detail": "Access denied! Producers only."}, status=status.HTTP_403_FORBIDDEN)
+
+    return Response({"message": f"Welcome Producer {user.name}!"}, status=status.HTTP_200_OK)
