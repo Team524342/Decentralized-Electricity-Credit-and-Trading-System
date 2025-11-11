@@ -49,7 +49,15 @@ function LoginPage() {
         // store tokens and role for later requests (normalize role)
         if (data.access) localStorage.setItem('access_token', data.access);
         if (data.refresh) localStorage.setItem('refresh_token', data.refresh);
-        if (data.role) localStorage.setItem('user_role', data.role.toLowerCase());
+        if (data.role) {
+          const rl = data.role.toLowerCase();
+          localStorage.setItem('user_role', rl);
+          // also keep legacy key names used in other components
+          localStorage.setItem('role', rl);
+        }
+        // store email so Profile components can read it
+        if (data.email) localStorage.setItem('email', data.email);
+        else if (email) localStorage.setItem('email', email);
 
         // redirect to the backend-provided path if present, else fallback by role
         if (data.redirect_to) {
