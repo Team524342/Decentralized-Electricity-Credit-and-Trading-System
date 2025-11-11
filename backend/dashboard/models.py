@@ -60,6 +60,12 @@ class User(models.Model):
     def check_password(self, raw_password):
         return check_password(raw_password, self.password)
     
+    def save(self, *args, **kwargs):
+        # Auto-hash password if it's plaintext (doesn't start with pbkdf2_)
+        if self.password and not self.password.startswith('pbkdf2_'):
+            self.password = make_password(self.password)
+        super().save(*args, **kwargs)
+    
     # Django and DRF expect user objects to expose `is_authenticated`.
     # Our custom User model doesn't inherit from Django's AbstractBaseUser,
     # so provide a simple property to satisfy permission checks.
