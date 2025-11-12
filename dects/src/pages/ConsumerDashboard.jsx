@@ -2,6 +2,7 @@ import React from "react";
 import Sidebar from "../components/adminSidebar";
 import { useState } from "react";
 import "../assets/adminPanal.css";
+import ProfileC from "../components/ProfileC";
 
 function Overview(){ return <div><h2>Overview</h2><p>Overview stats...</p></div>; }
 function FileComplaint(){ return <div><h2>File Complaint</h2><p>Form goes here</p></div>; }
@@ -9,7 +10,17 @@ function History(){ return <div><h2>Complaint History</h2><p>List of complaints<
 function Track(){ return <div><h2>Track Status</h2><p>Track active tickets</p></div>; }
 function Technician(){ return <div><h2>Technician Board</h2></div>; }
 function Reports(){ return <div><h2>Reports</h2></div>; }
-function Profile(){ return <div><h2>Profile</h2></div>; }
+function Profile(){
+  const email = localStorage.getItem("email");
+  const role = localStorage.getItem("role");
+
+  return (
+    <div>
+      <h2>Profile</h2>
+      <ProfileC email={email} role={role} />
+    </div>
+  );
+}
 function Settings(){ return <div><h2>Settings</h2></div>; }
 function Help(){ return <div><h2>Help</h2></div>; }
 
