@@ -6,6 +6,7 @@ import "../assets/adminPanal.css";
 import { Link } from "react-router-dom";
 import AdminCard from "../components/adminCard";
 import { Users, TrendingUp, DollarSign, Zap } from 'lucide-react';
+import ProfileC from "../components/ProfileC";
 import {
   ResponsiveContainer,
   LineChart,
@@ -65,7 +66,18 @@ function History(){ return <div><h2>Transaction History</h2><p>List of transacti
 function Trading(){ return <div><h2>Trading Status</h2><p>Track active tickets</p></div>; }
 function UsersBoard(){ return <div><h2>Users Board</h2></div>; }
 function Reports(){ return <div><h2>Reports</h2></div>; }
-function Profile(){ return <div><h2>Profile</h2></div>; }
+function Profile(){ 
+  const email = localStorage.getItem("email");
+  const role = localStorage.getItem("role");
+
+  return (
+    <div>
+      <h2>Profile</h2>
+      <ProfileC email={email} role={role} />
+    </div>
+
+  );
+}
 function Settings(){ return <div><h2>Settings</h2></div>; }
 function Help(){ return <div><h2>Help</h2></div>; }
 
