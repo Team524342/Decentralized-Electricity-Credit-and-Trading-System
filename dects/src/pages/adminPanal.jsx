@@ -3,10 +3,11 @@ import React,{ useState } from "react";
 import Sidebar from "../components/adminSidebar";
 import Navbar from "../components/adminNavbar";
 import "../assets/adminPanal.css";
-import { Link } from "react-router-dom";
+import { Link, Meta } from "react-router-dom";
 import AdminCard from "../components/adminCard";
 import { Users, TrendingUp, DollarSign, Zap } from 'lucide-react';
 import ProfileC from "../components/ProfileC";
+import MetaMask from "../components/connectMeta";
 import {
   ResponsiveContainer,
   LineChart,
@@ -31,6 +32,8 @@ const priceData = [
 ];
 
 function Overview() {
+
+
   return (
     <div>
       <h2>Overview</h2>
@@ -126,6 +129,7 @@ const AdminPanal = () => {
                         {pageMap[active] || <div>Not found</div>}
                         <div style={{ height: "1200px" }}>
                             Scroll to test sidebar – it stays fixed 🎯
+                            <MetaMask />
                         </div>
                         </section>
                      </main>
@@ -135,5 +139,8 @@ const AdminPanal = () => {
         </div>
     );
 }
+
+
+
 
 export default AdminPanal;

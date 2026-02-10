@@ -30,7 +30,7 @@ function Marketplace() {
         /> }
       </section>
 
-      {/* 🔄 Trading Process */}
+      {/* � Trading Process */}
       <section style={{ marginTop: "50px" }}>
         <h3>🔄 Token Trading Workflow</h3>
         <ul>

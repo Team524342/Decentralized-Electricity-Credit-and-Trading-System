@@ -1,6 +1,8 @@
 // E:\Decentralized-Electricity-Credit-and-Trading-System\dects\src\App.js
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate, Link } from 'react-router-dom';
+import Web3 from 'web3';
+import ElectricityMarketplace from './contracts/ElectricityMarketplace.json';
 
 import Register from './pages/Register';
 import ConsumerDashboard from './pages/ConsumerDashboard';
@@ -20,6 +22,74 @@ import Login from './pages/login';
 import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
+  const [listings, setListings] = useState([]);
+  const [account, setAccount] = useState(null);
+  const [marketplace, setMarketplace] = useState(null);
+  const [web3Instance, setWeb3Instance] = useState(null);
+
+  const MARKETPLACE_ADDRESS = "YOUR_MARKETPLACE_ADDRESS_HERE"; // TODO: Replace with actual address after deploying
+
+  // Load listings from blockchain
+  const loadListings = async () => {
+    if (!marketplace) return;
+    try {
+      const count = await marketplace.methods.listingCount().call();
+      let items = [];
+
+      for (let i = 1; i <= count; i++) {
+        const listing = await marketplace.methods.listings(i).call();
+        items.push({ id: i, ...listing });
+      }
+
+      setListings(items);
+    } catch (error) {
+      console.error('Error loading listings:', error);
+    }
+  };
+
+  // Buy Electricity
+  const buyElectricity = async (id, price) => {
+    if (!account || !marketplace) return;
+    try {
+      await marketplace.methods
+        .buyElectricity(id)
+        .send({ from: account, value: price });
+      alert('✅ Purchase successful!');
+      await loadListings(); // Refresh listings
+    } catch (error) {
+      alert('❌ Purchase failed: ' + error.message);
+    }
+  };
+
+  // Initialize Web3 and Marketplace contract
+  useEffect(() => {
+    if (window.ethereum && MARKETPLACE_ADDRESS !== "YOUR_MARKETPLACE_ADDRESS_HERE") {
+      const web3 = new Web3(window.ethereum);
+      setWeb3Instance(web3);
+      
+      const marketplaceInstance = new web3.eth.Contract(
+        ElectricityMarketplace.abi,
+        MARKETPLACE_ADDRESS
+      );
+      setMarketplace(marketplaceInstance);
+
+      // Load listings when marketplace is ready
+      (async () => {
+        const accounts = await web3.eth.getAccounts();
+        if (accounts.length > 0) {
+          setAccount(accounts[0]);
+        }
+      })();
+    }
+  }, []);
+
+  // Load listings when marketplace changes
+  useEffect(() => {
+    if (marketplace) {
+      loadListings();
+    }
+  }, [marketplace]);
+
   return (
     <Router>
       <nav style={styles.navbar}>
@@ -36,7 +106,7 @@ function App() {
         <Route path="/" element={<Register />} />
         <Route path="/index" element={<Index />} />
         <Route path="/home" element={<Home />} /> {/* Home Page */}
-        <Route path="/marketplace" element={<Marketplace />} />
+        <Route path="/marketplace" element={<Marketplace listings={listings} buyElectricity={buyElectricity} web3={web3Instance} />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/login" element={<Login />} />

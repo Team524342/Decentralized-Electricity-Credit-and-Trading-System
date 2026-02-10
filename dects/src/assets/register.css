@@ -3,14 +3,16 @@ body {
     background-color: #f4f4f9;
     margin: 0;
     padding: 0;
+
 }
 
 .register-page{
+     background: linear-gradient(135deg, #003566 0%, #0a2540 60%, #0d9488 100%);
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: #f4f6f8;
+    /* background: #f4f6f8; */
 }
 .register-card{
     background: #fff;

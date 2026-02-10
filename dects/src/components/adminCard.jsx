@@ -1,6 +1,7 @@
 import React from "react";
 import { TrendingUp } from 'lucide-react';
 import '../assets/adminPanal.css';
+import MetaMask from "./connectMeta";
 
 const AdminCard =({ icon: Icon, title, value, trend, color }) =>{
     return(
@@ -17,10 +18,16 @@ const AdminCard =({ icon: Icon, title, value, trend, color }) =>{
                         </p>
                     )}
                 </div>
+                
+                
+                 
+            
                 <div className="stat-icon-wrapper" style={{ backgroundColor: color + '20'}}>
                     <Icon className="stat-icon" style={{ color: color}}></Icon>
                 </div>
+                
             </div>
+         
         </div>
     )
 }
