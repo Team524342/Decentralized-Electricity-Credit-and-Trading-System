@@ -1,12 +1,17 @@
 import React from "react";
 import '../assets/styles.css';
 
-const TokenCard =({ title ,value}) =>{
+const TokenCard =({ title ,buyElectricity,web3}) =>{
     return(
         <div className="token-card">
-            <h4>{title}</h4>
-            <p>{value}</p>
-
+           <p>ID:{item.id}</p>
+           <p>Seller : {item.seller}</p>
+           <p>Amount :{item.amount}</p>
+           <p>Price : {web3.utils.fromWei(item.price,"ether")} ETH</p>
+           <p>Status :{item.sold ?"Sold":"Availabe"}</p>
+           {!item.sold &&(
+            <button onClick={()=> buyElectricity(item.id,item.price)}>BUY</button>
+           )}
         </div>
     );
 

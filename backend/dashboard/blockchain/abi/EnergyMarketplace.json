@@ -1,0 +1,72 @@
+[
+  {
+    "name": "listTokens",
+    "type": "function",
+    "inputs": [
+      { "name": "amount", "type": "uint256" },
+      { "name": "price", "type": "uint256" }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "name": "buyTokens",
+    "type": "function",
+    "inputs": [
+      { "name": "id", "type": "uint256" }
+    ],
+    "outputs": [],
+    "stateMutability": "payable"
+  },
+  {
+    "name": "cancelListing",
+    "type": "function",
+    "inputs": [
+      { "name": "id", "type": "uint256" }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "name": "listings",
+    "type": "function",
+    "inputs": [
+      { "name": "", "type": "uint256" }
+    ],
+    "outputs": [
+      { "name": "id", "type": "uint256" },
+      { "name": "seller", "type": "address" },
+      { "name": "tokenAmount", "type": "uint256" },
+      { "name": "price", "type": "uint256" },
+      { "name": "active", "type": "bool" }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "name": "listingCount",
+    "type": "function",
+    "inputs": [],
+    "outputs": [
+      { "name": "", "type": "uint256" }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "name": "Listed",
+    "type": "event",
+    "inputs": [
+      { "name": "id", "type": "uint256" },
+      { "name": "seller", "type": "address" },
+      { "name": "amount", "type": "uint256" },
+      { "name": "price", "type": "uint256" }
+    ]
+  },
+  {
+    "name": "Purchased",
+    "type": "event",
+    "inputs": [
+      { "name": "id", "type": "uint256" },
+      { "name": "buyer", "type": "address" }
+    ]
+  }
+]
