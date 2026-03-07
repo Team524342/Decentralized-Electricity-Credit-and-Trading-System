@@ -1,16 +1,10 @@
 import React, { useState } from "react";
 import "../assets/producer.css";
+// import { Link, NavLink } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 
-
-
- 
-
-function MintTokens(mintElectricity) {
+function MintTokens() {
   const [energy, setEnergy] = useState("");
-   const [address ,setAddress] =useState("");
-  const [amount,setAmount]=useState("")
-
 
   const handleMint = () => {
     alert(`${energy} kWh = ${energy} ETK minted successfully!`);
@@ -73,14 +67,6 @@ function MintTokens(mintElectricity) {
             />
             <button onClick={handleMint}>Mint Tokens</button>
           </div>
-        <div>
-          <h2>Mint Electricity Credits</h2>
-          <input placeholder="Receiver Address" onChange={(e)=> setAddress(e.target.value)}/>
-          <input placeholder="Amount (ELC)" onChange={(e)=> setAmount(e.target.value)}/>
-          <button onClick={()=> mintElectricity(address,amount)}>Mint Tokens</button>
-        </div>
-
-        
         </div>
       </main>
     </div>
