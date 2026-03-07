@@ -1,0 +1,48 @@
+[
+  {
+    "name": "redeemTokens",
+    "type": "function",
+    "inputs": [
+      { "name": "user", "type": "address" },
+      { "name": "billAmount", "type": "uint256" },
+      { "name": "tokenAmount", "type": "uint256" }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "name": "getBills",
+    "type": "function",
+    "inputs": [
+      { "name": "user", "type": "address" }
+    ],
+    "outputs": [
+      { "name": "", "type": "tuple[]", "components": [
+        { "name": "unitsUsed", "type": "uint256" },
+        { "name": "billAmount", "type": "uint256" },
+        { "name": "tokensRedeemed", "type": "uint256" },
+        { "name": "finalAmount", "type": "uint256" },
+        { "name": "timestamp", "type": "uint256" }
+      ]}
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "name": "admin",
+    "type": "function",
+    "inputs": [],
+    "outputs": [
+      { "name": "", "type": "address" }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "name": "BillPaid",
+    "type": "event",
+    "inputs": [
+      { "name": "user", "type": "address" },
+      { "name": "tokensUsed", "type": "uint256" },
+      { "name": "finalAmount", "type": "uint256" }
+    ]
+  }
+]

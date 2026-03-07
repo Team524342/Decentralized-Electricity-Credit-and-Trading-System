@@ -14,12 +14,13 @@ import ProducerReports from "./pages/producerreports";
 import ProducerProfile from "./pages/producerprofile";
 import AdminPanal from './pages/adminPanal';
 import Index from './pages/index';
-import Marketplace from "./pages/marketplace";
+import Marketplace from "./pages/Marketplace";
 import About from "./pages/about";
 import Contact from "./pages/contact";
 import Home from "./pages/home";
 import Login from './pages/login';
 import ProtectedRoute from './components/ProtectedRoute';
+import WalletConnect from './components/connectMeta';
 
 function App() {
   const [listings, setListings] = useState([]);
@@ -110,14 +111,15 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/login" element={<Login />} />
-  <Route path="/consumer" element={<ProtectedRoute allowedRoles={['consumer']}><ConsumerDashboard /></ProtectedRoute>} />
-  <Route path="/producer" element={<ProtectedRoute allowedRoles={['producer']}><ProducerDashboard /></ProtectedRoute>} />
+        <Route path="/wallet-connect" element={<WalletConnect/>}/>
+        <Route path="/consumer" element={<ProtectedRoute allowedRoles={['consumer']}><ConsumerDashboard /></ProtectedRoute>} />
+        <Route path="/producer" element={<ProtectedRoute allowedRoles={['producer']}><ProducerDashboard /></ProtectedRoute>} />
         <Route path="/producer/transactions" element={<ProducerTransactions />} />
         <Route path="/producer/mint" element={<MintTokens />} />
         <Route path="/producer/sell" element={<SellTokens />} />
         <Route path="/producer/reports" element={<ProducerReports />} />
         <Route path="/producer/profile" element={<ProducerProfile />} />
-  <Route path="/adminpanal" element={<ProtectedRoute allowedRoles={['admin']}><AdminPanal /></ProtectedRoute>} />
+        <Route path="/adminpanal" element={<ProtectedRoute allowedRoles={['admin']}><AdminPanal /></ProtectedRoute>} />
         {/* Fallback: redirect unknown routes to register */}
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
