@@ -297,3 +297,254 @@
   width: 32px;
   height: 32px;
 }
+
+/* ============================================== */
+/* DARK MODE & THEME SUPPORT */
+/* ============================================== */
+
+/* Theme variables */
+.admin-container.theme-light {
+  color-scheme: light;
+  --theme-bg: #ffffff;
+  --theme-text: #111827;
+  --theme-border: #e5e7eb;
+}
+
+.admin-container.theme-dark {
+  color-scheme: dark;
+  --theme-bg: #1a2332;
+  --theme-text: #e6eef8;
+  --theme-border: #2d3a4d;
+}
+
+/* Light mode (default) */
+.admin-container.theme-light .main-content {
+  background-color: #f9fafb;
+  color: #111827;
+}
+
+.admin-container.theme-light .content-area {
+  background-color: #f3f4f6;
+}
+
+.admin-container.theme-light .navbar-wrapper {
+  background-color: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.admin-container.theme-light .navbar {
+  background-color: #ffffff;
+  color: #111827;
+}
+
+/* Dark mode */
+.admin-container.theme-dark .main-content {
+  background-color: #0f172a;
+  color: #e6eef8;
+}
+
+.admin-container.theme-dark .content-area {
+  background-color: #0b1220;
+}
+
+.admin-container.theme-dark .navbar-wrapper {
+  background-color: #1a2332;
+  border-bottom: 1px solid #2d3a4d;
+}
+
+.admin-container.theme-dark .navbar {
+  background-color: #1a2332;
+  border-bottom: none;
+  color: #e6eef8;
+}
+
+/* Dark mode text visibility for all elements */
+.admin-container.theme-dark {
+  color: #e6eef8;
+}
+
+.admin-container.theme-dark p,
+.admin-container.theme-dark label,
+.admin-container.theme-dark span,
+.admin-container.theme-dark h1,
+.admin-container.theme-dark h2,
+.admin-container.theme-dark h3,
+.admin-container.theme-dark h4,
+.admin-container.theme-dark h5,
+.admin-container.theme-dark h6 {
+  color: #e6eef8;
+}
+
+.admin-container.theme-dark .stat-title {
+  color: #9ca3af !important;
+}
+
+.admin-container.theme-dark .stat-value {
+  color: #f9fafb !important;
+}
+
+.admin-container.theme-dark .bg-white {
+  background-color: #1a2332;
+  color: #e6eef8;
+}
+
+.admin-container.theme-dark .bg-gray-50 {
+  background-color: #2d3a4d;
+  color: #e6eef8;
+}
+
+.admin-container.theme-dark .border-gray-200 {
+  border-color: #2d3a4d;
+}
+
+.admin-container.theme-dark .border-b {
+  border-color: #2d3a4d;
+}
+
+.admin-container.theme-dark .text-gray-600 {
+  color: #d1d5db;
+}
+
+.admin-container.theme-dark .text-gray-700 {
+  color: #e6eef8;
+}
+
+.admin-container.theme-dark .text-gray-500 {
+  color: #9ca3af;
+}
+
+/* Navbar and theme toggle styling */
+.navbar-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0;
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background-color: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+  height: 60px;
+  transition: all 0.3s ease;
+}
+
+.navbar-wrapper .navbar {
+  flex: 1;
+  margin: 0;
+  padding: 15px 25px;
+  border: none;
+  position: relative;
+  height: auto;
+  box-shadow: none;
+}
+
+/* Theme Toggle Button */
+.theme-toggle-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 60px;
+  padding: 8px;
+  background: transparent;
+  border: none;
+  border-left: 1px solid #e5e7eb;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: #6b7280;
+  font-size: 20px;
+}
+
+.admin-container.theme-dark .theme-toggle-btn {
+  border-left-color: #2d3a4d;
+  color: #9ca3af;
+}
+
+.theme-toggle-btn:hover {
+  background-color: #f3f4f6;
+  color: #111827;
+}
+
+.admin-container.theme-dark .theme-toggle-btn:hover {
+  background-color: #2d3a4d;
+  color: #fbbf24;
+}
+
+.theme-toggle-btn:active {
+  transform: scale(0.95);
+}
+
+.theme-toggle-btn:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: -2px;
+}
+
+/* Sidebar dark mode */
+.admin-container.theme-dark .sidebar {
+  background: linear-gradient(180deg, #1a2332, #0f1419);
+  color: #e6eef8;
+  border-right-color: #2d3a4d;
+}
+
+.admin-container.theme-dark .nav-item {
+  color: #e6eef8;
+}
+
+.admin-container.theme-dark .nav-item:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.admin-container.theme-dark .nav-label {
+  color: #e6eef8;
+}
+
+/* Ensure all cards are visible in dark mode */
+[data-admin-theme="dark"] .space-y-6 > * {
+  background-color: #1a2332;
+  color: #e6eef8;
+}
+
+[data-admin-theme="dark"] .bg-white,
+[data-admin-theme="dark"] .rounded-lg {
+  background-color: #1a2332 !important;
+  color: #e6eef8 !important;
+}
+
+[data-admin-theme="dark"] p,
+[data-admin-theme="dark"] label,
+[data-admin-theme="dark"] span,
+[data-admin-theme="dark"] h3,
+[data-admin-theme="dark"] h4 {
+  color: #e6eef8 !important;
+}
+
+/* Grid cards in dark mode */
+[data-admin-theme="dark"] .grid > * {
+  background-color: #1a2332;
+  color: #e6eef8;
+}
+
+/* Tab styling in dark mode */
+[data-admin-theme="dark"] .border-b {
+  border-color: #2d3a4d;
+}
+
+/* Utility classes fix for dark mode */
+@media (prefers-color-scheme: dark) {
+  .admin-container {
+    background-color: #0f172a;
+  }
+  
+  .main-content {
+    background-color: #0b1220;
+    color: #e6eef8;
+  }
+  
+  p, label, span, h3, h4 {
+    color: #e6eef8;
+  }
+  
+  .text-gray-600, .text-gray-700, .text-gray-500 {
+    color: #d1d5db !important;
+  }
+}

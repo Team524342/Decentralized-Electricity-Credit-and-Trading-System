@@ -1,0 +1,36 @@
+/* App Container Styles */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+}
+
+.app-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Ensure proper spacing for pages */
+.page-container {
+  width: 100%;
+  background: inherit;
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Mobile menu activation */
+@media (max-width: 768px) {
+  .mobile-menu.active {
+    display: block;
+  }
+}
