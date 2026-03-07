@@ -2,10 +2,12 @@ import React, { useState } from "react";
 import "../assets/producer.css";
 
 import { NavLink } from "react-router-dom";
+import { sellElectricity } from "../utils/marketplaceUtils";
 
 
-function SellTokens() {
+function SellTokens({sellElectricity}) {
   const [amount, setAmount] = useState("");
+  const [price,setPrice]=useState("");
   const pricePerETK = 12;
 
   const handleSell = () => {
@@ -71,6 +73,12 @@ function SellTokens() {
             />
             <button onClick={handleSell}>Sell Tokens</button>
           </div>
+        </div>
+        <div>
+          <h2>Sell Electricity Credits</h2>
+          <input placeholder="Token Amount" onChange={(e)=>setAmount(e.target.value)}/>
+          <input placeholder="Price in ETH " onChange={(e)=>setPrice(e.target.value)}/>
+          <button onClick={()=> sellElectricity(amount,price)}>Create Listing</button>
         </div>
       </main>
     </div>
